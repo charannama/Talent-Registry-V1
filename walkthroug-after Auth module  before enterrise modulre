@@ -1,0 +1,54 @@
+# Phase 1: Common Package Foundation Walkthrough
+
+The restructuring of the shared foundation layer is fully complete. The project now benefits from a clean, centralized, and extensible package structure for all core capabilities.
+
+## Architecture & Structure Update
+
+The `com.zencube.registry.common` package has been reorganized as follows:
+
+```text
+common/
+├── audit
+│   ├── AuditorAwareImpl.java
+│   └── AuditorConfig.java
+├── constants
+│   └── Constants.java
+├── entity
+│   └── BaseEntity.java
+├── enums
+│   ├── ApplicationStatus.java
+│   └── ... (existing enums)
+├── exception
+│   ├── BadRequestException.java
+│   ├── BaseException.java
+│   ├── ConflictException.java
+│   ├── GlobalExceptionHandler.java
+│   └── ... (other custom exceptions)
+├── mapper          (placeholder for mapstruct / mappers)
+├── response
+│   ├── ApiResponse.java
+│   └── ErrorResponse.java
+├── util            (placeholder for core utilities)
+└── validation      (placeholder for core validators)
+```
+
+## Highlights
+
+1. **Centralized Error Handling**: 
+   Moved the robust `GlobalExceptionHandler` and all application exceptions (e.g., `ResourceNotFoundException`, `ForbiddenException`) to `common/exception` and removed duplicate legacy code.
+   
+2. **Audit Configuration**: 
+   Grouped Spring JPA Audit features (`AuditorAwareImpl`, `AuditorConfig`) into `common/audit` taking them out from the security domain to properly enforce separation of concerns.
+   
+3. **API Contracts**: 
+   Isolated `ApiResponse` and `ErrorResponse` inside `common/response` to clearly define our outward-facing DTO contracts.
+
+4. **Widespread Global Imports Updated**: 
+   Updated over 40+ controllers, entities, and services that had dependencies on these files.
+   
+## Verification
+
+I executed a `mvn clean compile` across the updated project space. The codebase compiled successfully with a `BUILD SUCCESS`, confirming all class movements, package namespaces, and import resolutions are intact and fully functional.
+
+> [!TIP]
+> The foundation is now strictly organized. When adding future modules (e.g., candidate management, projects, education), please refer to these centralized base structures to ensure enterprise-grade consistency.

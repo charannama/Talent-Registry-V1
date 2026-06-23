@@ -1,0 +1,8 @@
+ALTER TABLE public.users
+ADD COLUMN auth_provider VARCHAR(20) NOT NULL DEFAULT 'LOCAL';
+
+ALTER TABLE public.users
+ADD COLUMN provider_id VARCHAR(255);
+
+ALTER TABLE public.users
+ADD COLUMN email_verified BOOLEAN NOT NULL DEFAULT FALSE;

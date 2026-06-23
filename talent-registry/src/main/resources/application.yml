@@ -1,0 +1,17 @@
+enterprise:
+  blocked-domains:
+    - gmail.com
+    - yahoo.com
+    - hotmail.com
+    - outlook.com
+    - live.com
+    - icloud.com
+    - me.com
+    - aol.com
+    - protonmail.com
+    - proton.me
+    - mail.com
+    - zoho.com
+    - yandex.com
+    - gmx.com
+    - rediffmail.com
