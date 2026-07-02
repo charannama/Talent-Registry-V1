@@ -1,0 +1,7 @@
+# Use this workspace to collaborate
+workspace:
+  id: 53d89013-d54f-4380-895d-447ab91697af
+
+localResources:
+  collections:
+    - ..\talent-registry\postman-collection.json

@@ -3,4 +3,4 @@
 -- Add CUSTOM value to the PostgreSQL role_type enum for custom admin-created roles.
 -- =============================================================================
 
-ALTER TYPE role_type ADD VALUE IF NOT EXISTS 'CUSTOM';
+-- ALTER TYPE role_type ADD VALUE IF NOT EXISTS 'CUSTOM';

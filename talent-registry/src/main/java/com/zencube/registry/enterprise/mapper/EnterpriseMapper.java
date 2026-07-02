@@ -174,6 +174,7 @@ public class EnterpriseMapper {
                 .onboardingStatus(enterprise.getOnboardingStatus())
                 .accountActive(enterprise.getAccountActive())
                 .onboardedBy(enterprise.getOnboardedBy())
+                .approvedBy(enterprise.getApprovedBy())
                 .approvedAt(enterprise.getApprovedAt())
                 .rejectedBy(enterprise.getRejectedBy())
                 .rejectedAt(enterprise.getRejectedAt())

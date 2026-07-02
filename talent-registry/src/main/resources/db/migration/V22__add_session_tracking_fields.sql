@@ -1,4 +1,4 @@
--- Add tracking fields to sessions table
+﻿-- Add tracking fields to sessions table
 ALTER TABLE sessions ADD COLUMN access_token_jti VARCHAR(255);
 ALTER TABLE sessions ADD COLUMN last_activity_at TIMESTAMP WITH TIME ZONE;
 

@@ -21,4 +21,5 @@ public class PendingApplicationResponse {
     private String openingTitle;
     private Instant appliedAt;
     private ApplicationStatus status;
+    private UUID currentHandlerId;
 }

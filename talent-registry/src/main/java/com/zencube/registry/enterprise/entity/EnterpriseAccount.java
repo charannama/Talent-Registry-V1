@@ -110,6 +110,9 @@ public class EnterpriseAccount extends BaseEntity {
     @Column(name = "onboarded_by")
     private UUID onboardedBy;
 
+    @Column(name = "approved_by")
+    private UUID approvedBy;
+
     @Column(name = "approved_at")
     private Instant approvedAt;
 
@@ -160,6 +163,7 @@ public class EnterpriseAccount extends BaseEntity {
         this.onboardingStatus = EnterpriseOnboardingStatus.APPROVED;
         this.accountActive = true;
         this.approvedAt = Instant.now();
+        this.approvedBy = hrUserId;
         this.onboardedBy = hrUserId;
         this.lastStatusChangedAt = Instant.now();
         this.lastStatusChangedBy = hrUserId;

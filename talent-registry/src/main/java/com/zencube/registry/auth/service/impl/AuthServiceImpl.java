@@ -7,7 +7,6 @@ import com.zencube.registry.auth.mapper.AuthMapper;
 import com.zencube.registry.auth.repository.RoleRepository;
 import com.zencube.registry.auth.repository.UserRepository;
 import com.zencube.registry.auth.service.AuthService;
-import com.zencube.registry.auth.email.EmailService;
 import com.zencube.registry.auth.verification.entity.EmailVerificationToken;
 import com.zencube.registry.auth.verification.repository.EmailVerificationTokenRepository;
 import com.zencube.registry.common.enums.RoleType;
@@ -64,8 +63,9 @@ public class AuthServiceImpl implements AuthService {
     private final AuthMapper authMapper;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
-    private final EmailService emailService;
+    private final com.zencube.registry.scheduler.service.TaskSchedulerService taskSchedulerService;
     private final SecurityProperties securityProperties;
+    private final org.springframework.context.ApplicationEventPublisher applicationEventPublisher;
 
     @Value("${app.jwt.access-token-expiry-seconds:7200}")
     private long accessTokenExpirySeconds;
@@ -86,7 +86,7 @@ public class AuthServiceImpl implements AuthService {
         log.info("Registering new user: {}", request.email());
 
         if (userRepository.existsByEmailAndDeletedFalse(request.email())) {
-            throw new IllegalStateException(
+            throw new com.zencube.registry.common.exception.ConflictException(
                     "An account with email '%s' already exists.".formatted(request.email()));
         }
 
@@ -94,7 +94,47 @@ public class AuthServiceImpl implements AuthService {
         user.setPasswordHash(passwordEncoder.encode(request.password()));
         user = userRepository.save(user);
 
+        // Assign STUDENT role
+        Role studentRole = roleRepository.findByRoleTypeAndDeletedFalse(RoleType.STUDENT)
+            .orElseThrow(() -> new IllegalStateException("STUDENT role not found"));
+        UserRole userRole = new UserRole(user, studentRole);
+        userRole = userRoleRepository.save(userRole);
+        user.getUserRoles().add(userRole);
+
         log.info("User registered successfully with id={}", user.getId());
+
+        String token = java.util.UUID.randomUUID().toString();
+        String tokenHash = hashToken(token);
+        com.zencube.registry.auth.verification.entity.EmailVerificationToken verificationToken = com.zencube.registry.auth.verification.entity.EmailVerificationToken.builder()
+                .token(tokenHash)
+                .user(user)
+                .expiresAt(java.time.Instant.now().plus(24, java.time.temporal.ChronoUnit.HOURS))
+                .build();
+        emailVerificationTokenRepository.save(verificationToken);
+
+        taskSchedulerService.enqueueTask(
+                com.zencube.registry.scheduler.dto.TaskPayload.builder()
+                        .taskType("EMAIL_DELIVERY")
+                        .data(java.util.Map.of(
+                                "recipientId", user.getId().toString(),
+                                "eventType", com.zencube.registry.notification.enums.NotificationEventType.EMAIL_VERIFIED.name(),
+                                "verificationLink", "http://localhost:3000/verify-email?token=" + token,
+                                "userName", user.getFirstName()
+                        ))
+                        .build()
+        );
+
+        applicationEventPublisher.publishEvent(
+            com.zencube.registry.notification.event.NotificationEvent.builder()
+                .eventType(com.zencube.registry.notification.enums.NotificationEventType.USER_REGISTERED)
+                .recipientId(user.getId())
+                .resourceType("User")
+                .resourceId(user.getId())
+                .title("Welcome to ZenCube!")
+                .message("Your account has been registered successfully.")
+                .build()
+        );
+
         return authMapper.toUserResponse(user);
     }
 
@@ -104,7 +144,7 @@ public class AuthServiceImpl implements AuthService {
         log.info("Registering new HR staff: {}", request.email());
 
         if (userRepository.existsByEmailAndDeletedFalse(request.email())) {
-            throw new IllegalStateException(
+            throw new com.zencube.registry.common.exception.ConflictException(
                     "An account with email '%s' already exists.".formatted(request.email()));
         }
 
@@ -115,8 +155,8 @@ public class AuthServiceImpl implements AuthService {
         user = userRepository.save(user);
 
         // Assign HR_STAFF role
-        Role hrRole = roleRepository.findByNameAndDeletedFalse(RoleType.HR_STAFF.name())
-                .orElseThrow(() -> new IllegalStateException("HR_STAFF role not found in system"));
+        Role hrRole = roleRepository.findByRoleTypeAndDeletedFalse(RoleType.HR_STAFF)
+            .orElseThrow(() -> new IllegalStateException("HR_STAFF role not found"));
 
         UserRole userRole = new UserRole();
         userRole.setUser(user);
@@ -133,8 +173,17 @@ public class AuthServiceImpl implements AuthService {
                 .build();
         emailVerificationTokenRepository.save(verificationToken);
 
-        // Send email
-        emailService.sendVerificationEmail(user.getEmail(), token);
+        taskSchedulerService.enqueueTask(
+                com.zencube.registry.scheduler.dto.TaskPayload.builder()
+                        .taskType("EMAIL_DELIVERY")
+                        .data(java.util.Map.of(
+                                "recipientId", user.getId().toString(),
+                                "eventType", com.zencube.registry.notification.enums.NotificationEventType.EMAIL_VERIFIED.name(),
+                                "verificationLink", "http://localhost:3000/verify-email?token=" + token,
+                                "userName", user.getFirstName()
+                        ))
+                        .build()
+        );
 
         log.info("HR staff registered successfully with id={}", user.getId());
         return new RegistrationResponse(true, "Registration successful. Please verify your email.");
@@ -156,8 +205,8 @@ public class AuthServiceImpl implements AuthService {
                     "Company name '%s' is already registered.".formatted(trimmedCompany));
         }
 
-        Role recruiterRole = roleRepository.findByNameAndDeletedFalse(RoleType.ENTERPRISE_RECRUITER.name())
-                .orElseThrow(() -> new BusinessException("ENTERPRISE_RECRUITER role not found in system"));
+        Role recruiterRole = roleRepository.findByRoleTypeAndDeletedFalse(RoleType.ENTERPRISE_RECRUITER)
+                .orElseThrow(() -> new IllegalStateException("ENTERPRISE_RECRUITER role not found in system"));
 
         User user = User.builder()
                 .email(request.email().toLowerCase().trim())
@@ -187,7 +236,17 @@ public class AuthServiceImpl implements AuthService {
                 .build();
         emailVerificationTokenRepository.save(verificationToken);
 
-        emailService.sendVerificationEmail(user.getEmail(), token);
+        taskSchedulerService.enqueueTask(
+                com.zencube.registry.scheduler.dto.TaskPayload.builder()
+                        .taskType("EMAIL_DELIVERY")
+                        .data(java.util.Map.of(
+                                "recipientId", user.getId().toString(),
+                                "eventType", com.zencube.registry.notification.enums.NotificationEventType.EMAIL_VERIFIED.name(),
+                                "verificationLink", "http://localhost:3000/verify-email?token=" + token,
+                                "userName", user.getFirstName()
+                        ))
+                        .build()
+        );
 
         log.info("Enterprise recruiter registered successfully with id={}", user.getId());
         return new RegistrationResponse(true, "Registration successful. Please verify your email before logging in.");
@@ -348,7 +407,17 @@ public class AuthServiceImpl implements AuthService {
                 .build();
         emailVerificationTokenRepository.save(verificationToken);
 
-        emailService.sendVerificationEmail(user.getEmail(), rawToken);
+        taskSchedulerService.enqueueTask(
+                com.zencube.registry.scheduler.dto.TaskPayload.builder()
+                        .taskType("EMAIL_DELIVERY")
+                        .data(java.util.Map.of(
+                                "recipientId", user.getId().toString(),
+                                "eventType", com.zencube.registry.notification.enums.NotificationEventType.EMAIL_VERIFIED.name(),
+                                "verificationLink", "http://localhost:3000/verify-email?token=" + rawToken,
+                                "userName", user.getFirstName()
+                        ))
+                        .build()
+        );
         log.info("Resent verification email to user id={}", user.getId());
     }
 

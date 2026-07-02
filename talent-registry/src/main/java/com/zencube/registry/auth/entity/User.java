@@ -119,10 +119,12 @@ public class User extends BaseEntity {
     }
 
     @OneToMany(mappedBy = "user")
-    private java.util.Set<com.zencube.registry.userrole.entity.UserRole> userRoles;
+    @Builder.Default
+    private java.util.Set<com.zencube.registry.userrole.entity.UserRole> userRoles = new java.util.HashSet<>();
 
     @OneToMany(mappedBy = "user")
-    private java.util.Set<com.zencube.registry.session.entity.Session> sessions;
+    @Builder.Default
+    private java.util.Set<com.zencube.registry.session.entity.Session> sessions = new java.util.HashSet<>();
 
     @OneToOne(
             mappedBy = "user",

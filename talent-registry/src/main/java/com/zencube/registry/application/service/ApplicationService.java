@@ -13,4 +13,8 @@ public interface ApplicationService {
     ApplicationPageResponse<PendingApplicationResponse> getPendingReviewQueue(String status, String search, int page, int size, String sort, String direction);
     EnterpriseApplicationPageResponse<EnterpriseApplicationResponse> getForwardedApplicationsForEnterprise(UUID openingId, String search, String status, int page, int size, String sort, String direction, UUID currentUserId);
     Application applyToOpening(UUID openingId, UUID currentUserId);
+    void updateApplicationStatus(UUID applicationId, com.zencube.registry.common.enums.ApplicationStatus newStatus);
+    void assignHandler(UUID applicationId, UUID handlerId);
+    void unassignHandler(UUID applicationId);
+    Application scheduleInterview(UUID applicationId, java.time.Instant startTime, java.time.Instant endTime, String timezone, String location, String interviewNotes, UUID currentUserId);
 }

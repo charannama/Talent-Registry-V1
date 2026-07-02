@@ -106,8 +106,8 @@ public class EnterpriseServiceImpl implements EnterpriseService {
         user = userRepository.save(user);
 
         // 2. Assign ENTERPRISE_RECRUITER Role
-        Role role = roleRepository.findByNameAndDeletedFalse(RoleType.ENTERPRISE_RECRUITER.name())
-                .orElseThrow(() -> new ResourceNotFoundException("Role not found"));
+        Role role = roleRepository.findByRoleTypeAndDeletedFalse(RoleType.ENTERPRISE_RECRUITER)
+                .orElseThrow(() -> new com.zencube.registry.common.exception.ResourceNotFoundException("Role not found"));
         UserRole userRole = UserRole.builder()
                 .user(user)
                 .role(role)
@@ -271,6 +271,17 @@ public class EnterpriseServiceImpl implements EnterpriseService {
                 "Approved by HR"
         );
 
+        eventPublisher.publishEvent(
+            com.zencube.registry.notification.event.NotificationEvent.builder()
+                .eventType(com.zencube.registry.notification.enums.NotificationEventType.ENTERPRISE_APPROVED)
+                .recipientId(enterprise.getUser().getId())
+                .resourceType("EnterpriseAccount")
+                .resourceId(enterprise.getId())
+                .title("Enterprise Approved")
+                .message("Your Enterprise Account has been approved by HR.")
+                .build()
+        );
+
         return EnterpriseMapper.toApprovalResponse(enterprise);
     }
 
@@ -299,6 +310,17 @@ public class EnterpriseServiceImpl implements EnterpriseService {
                 "Rejected: " + reason
         );
 
+        eventPublisher.publishEvent(
+            com.zencube.registry.notification.event.NotificationEvent.builder()
+                .eventType(com.zencube.registry.notification.enums.NotificationEventType.ENTERPRISE_REJECTED)
+                .recipientId(enterprise.getUser().getId())
+                .resourceType("EnterpriseAccount")
+                .resourceId(enterprise.getId())
+                .title("Enterprise Rejected")
+                .message("Your Enterprise Account has been rejected. Reason: " + reason)
+                .build()
+        );
+
         return EnterpriseMapper.toRejectionResponse(enterprise);
     }
 
@@ -325,6 +347,17 @@ public class EnterpriseServiceImpl implements EnterpriseService {
                 previousStatus,
                 enterprise.getOnboardingStatus(),
                 "Suspended: " + reason
+        );
+
+        eventPublisher.publishEvent(
+            com.zencube.registry.notification.event.NotificationEvent.builder()
+                .eventType(com.zencube.registry.notification.enums.NotificationEventType.ENTERPRISE_SUSPENDED)
+                .recipientId(enterprise.getUser().getId())
+                .resourceType("EnterpriseAccount")
+                .resourceId(enterprise.getId())
+                .title("Enterprise Suspended")
+                .message("Your Enterprise Account has been suspended. Reason: " + reason)
+                .build()
         );
 
         return EnterpriseMapper.toSuspensionResponse(enterprise);

@@ -1,4 +1,4 @@
--- V68__add_opening_to_applications.sql
+﻿-- V68__add_opening_to_applications.sql
 -- Link applications to job_openings and enforce unique constraint
 
 ALTER TABLE applications
@@ -16,7 +16,7 @@ ALTER TABLE applications
 ADD CONSTRAINT fk_applications_opening FOREIGN KEY (opening_id) REFERENCES job_openings(id) ON DELETE CASCADE;
 
 DROP INDEX IF EXISTS idx_applications_student_opening;
-CREATE UNIQUE INDEX idx_applications_student_opening ON applications(profile_id, opening_id) WHERE is_deleted = false;
+CREATE UNIQUE INDEX idx_applications_student_opening ON applications(profile_id, opening_id) ;
 
 DROP INDEX IF EXISTS idx_applications_status;
-CREATE INDEX idx_applications_status ON applications(status) WHERE is_deleted = false;
+CREATE INDEX idx_applications_status ON applications(status) ;

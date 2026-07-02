@@ -37,9 +37,29 @@ import com.zencube.registry.opening.exception.OpeningNotFoundException;
 import com.zencube.registry.opening.repository.OpeningRepository;
 
 import java.util.UUID;
+import java.util.UUID;
 import java.util.Set;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
+
+import com.zencube.registry.calendar.entity.CalendarEvent;
+import com.zencube.registry.calendar.entity.CalendarParticipant;
+import com.zencube.registry.calendar.enums.EventCategory;
+import com.zencube.registry.calendar.enums.ParticipantType;
+import com.zencube.registry.calendar.enums.ParticipantResponseStatus;
+import com.zencube.registry.calendar.repository.CalendarEventRepository;
+import com.zencube.registry.calendar.repository.CalendarParticipantRepository;
+import com.zencube.registry.calendar.exception.EventConflictException;
+import com.zencube.registry.application.exception.InvalidInterviewStateException;
+import com.zencube.registry.application.event.InterviewScheduledEvent;
+import com.zencube.registry.journal.service.AuditService;
+import com.zencube.registry.activity.service.ActivityService;
+import org.springframework.context.annotation.Lazy;
+import com.zencube.registry.successstory.service.SuccessStoryService;
+import com.zencube.registry.application.event.ApplicationStatusChangedEvent;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @Slf4j
 @Service
@@ -51,6 +71,13 @@ public class ApplicationServiceImpl implements ApplicationService {
     private final EnterpriseAccountRepository enterpriseAccountRepository;
     private final OpeningRepository openingRepository;
     private final StudentProfileRepository studentProfileRepository;
+    @Lazy private final SuccessStoryService successStoryService;
+    private final org.springframework.context.ApplicationEventPublisher eventPublisher;
+    
+    private final CalendarEventRepository calendarEventRepository;
+    private final CalendarParticipantRepository calendarParticipantRepository;
+    private final AuditService auditService;
+    private final ActivityService activityService;
 
     @Override
     @Transactional(readOnly = true)
@@ -199,10 +226,202 @@ public class ApplicationServiceImpl implements ApplicationService {
             // Layer 2 Protection: Database level unique constraint
             Application savedApplication = applicationRepository.saveAndFlush(newApplication);
             log.info("Successfully created application {} for user {} to opening {}", savedApplication.getId(), currentUserId, openingId);
+
+            // Domain Event Integration
+            try {
+                eventPublisher.publishEvent(
+                    ApplicationStatusChangedEvent.builder()
+                        .applicationId(savedApplication.getId())
+                        .studentId(profile.getUser().getId())
+                        .enterpriseId(opening.getEnterprise().getId())
+                        .openingId(opening.getId())
+                        .oldStatus(null)
+                        .newStatus(ApplicationStatus.APPLIED)
+                        .actorId(currentUserId)
+                        .actorType("Student")
+                        .occurredAt(java.time.Instant.now())
+                        .build()
+                );
+            } catch(Exception e) {
+                log.warn("Failed to publish ApplicationStatusChangedEvent for APPLIED transition: {}", e.getMessage());
+            }
+
             return savedApplication;
         } catch (DataIntegrityViolationException ex) {
             log.warn("Race condition blocked by database unique constraint. User {}, Opening {}", currentUserId, openingId);
             throw new DuplicateApplicationException("You have already applied to this opening");
         }
     }
+
+    @Override
+    @Transactional
+    public void updateApplicationStatus(UUID applicationId, ApplicationStatus newStatus) {
+        log.info("Updating application {} to status {}", applicationId, newStatus);
+        
+        Application application = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new BusinessException("Application not found"));
+                
+        ApplicationStatus oldStatus = application.getStatus();
+        application.setStatus(newStatus);
+        application.setLastStageUpdatedAt(java.time.Instant.now());
+        
+        applicationRepository.save(application);
+
+        // Domain Event Integration
+        try {
+            eventPublisher.publishEvent(
+                ApplicationStatusChangedEvent.builder()
+                    .applicationId(application.getId())
+                    .studentId(application.getProfile().getUser().getId())
+                    .enterpriseId(application.getOpening().getEnterprise().getId())
+                    .openingId(application.getOpening().getId())
+                    .oldStatus(oldStatus) 
+                    .newStatus(newStatus)
+                    .actorId(getCurrentUserId())
+                    .actorType("User") // Or determine based on role
+                    .occurredAt(java.time.Instant.now())
+                    .build()
+            );
+        } catch(Exception e) {
+            log.warn("Failed to publish ApplicationStatusChangedEvent: {}", e.getMessage());
+        }
+    }
+
+    private UUID getCurrentUserId() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || !auth.isAuthenticated() || "anonymousUser".equals(auth.getPrincipal())) {
+            return UUID.fromString("00000000-0000-0000-0000-000000000000"); 
+        }
+        try {
+            return UUID.fromString(auth.getName());
+        } catch (IllegalArgumentException e) {
+            return UUID.fromString("00000000-0000-0000-0000-000000000000"); 
+        }
+    }
+
+    @Override
+    @Transactional
+    public void assignHandler(UUID applicationId, UUID handlerId) {
+        log.info("Assigning handler {} to application {}", handlerId, applicationId);
+        Application application = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new BusinessException("Application not found"));
+                
+        application.assignHandler(handlerId);
+        applicationRepository.save(application);
+    }
+
+    @Override
+    @Transactional
+    public void unassignHandler(UUID applicationId) {
+        log.info("Unassigning handler from application {}", applicationId);
+        Application application = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new BusinessException("Application not found"));
+                
+        application.unassignHandler();
+        applicationRepository.save(application);
+    }
+
+    @Override
+    @Transactional
+    public Application scheduleInterview(UUID applicationId, java.time.Instant startTime, java.time.Instant endTime, String timezone, String location, String interviewNotes, UUID currentUserId) {
+        log.info("Scheduling interview for application {} by user {}", applicationId, currentUserId);
+
+        Application application = applicationRepository.findById(applicationId)
+                .orElseThrow(() -> new BusinessException("Application not found"));
+
+        if (!ApplicationStatus.FORWARDED.equals(application.getStatus()) && !ApplicationStatus.INTERVIEW_SCHEDULED.equals(application.getStatus())) {
+            throw new InvalidInterviewStateException("Interview can only be scheduled for applications in FORWARDED or INTERVIEW_SCHEDULED status. Current status: " + application.getStatus());
+        }
+
+        boolean conflict = calendarEventRepository.existsConflictingEvent("APPLICATION", application.getId(), startTime, endTime, application.hasInterviewScheduled() ? application.getInterviewEvent().getId() : null);
+        if (conflict) {
+            throw new EventConflictException("Calendar conflict detected for this application time slot.");
+        }
+
+        StudentProfile profile = application.getProfile();
+        Opening opening = application.getOpening();
+        EnterpriseAccount enterprise = opening.getEnterprise();
+
+        String title = "Interview - " + profile.getUser().getFirstName() + " " + profile.getUser().getLastName() + " - " + opening.getTitle();
+        String description = String.format("Application ID: %s\nStudent: %s %s\nOpening: %s\nEnterprise: %s\nNotes: %s",
+                application.getId(), profile.getUser().getFirstName(), profile.getUser().getLastName(),
+                opening.getTitle(), enterprise.getCompanyName(), interviewNotes != null ? interviewNotes : "");
+
+        CalendarEvent calendarEvent = CalendarEvent.builder()
+                .title(title)
+                .description(description)
+                .startTime(startTime)
+                .endTime(endTime)
+                .timezone(timezone)
+                .location(location)
+                .eventCategory(EventCategory.INTERVIEW)
+                .eventableType("APPLICATION")
+                .eventableId(application.getId())
+                .build();
+
+        calendarEvent = calendarEventRepository.save(calendarEvent);
+
+        CalendarParticipant studentParticipant = CalendarParticipant.builder()
+                .event(calendarEvent)
+                .participantType(ParticipantType.INTERNAL)
+                .user(profile.getUser())
+                .responseStatus(ParticipantResponseStatus.PENDING)
+                .build();
+
+        com.zencube.registry.auth.entity.User hrUser = new com.zencube.registry.auth.entity.User();
+        hrUser.setId(currentUserId);
+        CalendarParticipant hrParticipant = CalendarParticipant.builder()
+                .event(calendarEvent)
+                .participantType(ParticipantType.INTERNAL)
+                .user(hrUser)
+                .responseStatus(ParticipantResponseStatus.ACCEPTED)
+                .build();
+
+        CalendarParticipant enterpriseParticipant = CalendarParticipant.builder()
+                .event(calendarEvent)
+                .participantType(ParticipantType.INTERNAL)
+                .user(enterprise.getUser())
+                .responseStatus(ParticipantResponseStatus.ACCEPTED)
+                .build();
+
+        calendarParticipantRepository.saveAll(List.of(studentParticipant, hrParticipant, enterpriseParticipant));
+
+        ApplicationStatus oldStatus = application.getStatus();
+        
+        application.assignInterviewEvent(calendarEvent);
+        application.setStatus(ApplicationStatus.INTERVIEW_SCHEDULED);
+        application.setLastStageUpdatedAt(java.time.Instant.now());
+        if (application.getCurrentHandlerId() == null) {
+            application.assignHandler(currentUserId);
+        }
+        
+        applicationRepository.save(application);
+
+        auditService.recordCustomEvent(
+                oldStatus == ApplicationStatus.FORWARDED ? "INTERVIEW_CREATED" : "INTERVIEW_RESCHEDULED",
+                "Application",
+                application.getId().toString(),
+                "Event ID: " + calendarEvent.getId()
+        );
+
+        activityService.recordActivity("Application", application.getId().toString(), "APPLICATION", application.getId().toString(), com.zencube.registry.activity.enums.ActivityType.INTERVIEW_SCHEDULED, "Interview scheduled for " + profile.getUser().getEmail());
+
+        try {
+            eventPublisher.publishEvent(
+                InterviewScheduledEvent.builder()
+                    .applicationId(application.getId())
+                    .calendarEventId(calendarEvent.getId())
+                    .studentId(profile.getUser().getId())
+                    .enterpriseId(enterprise.getId())
+                    .scheduledTime(startTime)
+                    .scheduledBy(currentUserId)
+                    .build()
+            );
+        } catch(Exception e) {
+            log.warn("Failed to publish InterviewScheduledEvent: {}", e.getMessage());
+        }
+
+        return application;
+    }
 }
+

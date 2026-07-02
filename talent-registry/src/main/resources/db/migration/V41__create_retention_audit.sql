@@ -1,4 +1,4 @@
--- V41__create_retention_audit.sql
+﻿-- V41__create_retention_audit.sql
 
 ALTER TABLE applications ADD COLUMN IF NOT EXISTS profile_id UUID;
 ALTER TABLE applications ADD CONSTRAINT fk_applications_profile FOREIGN KEY (profile_id) REFERENCES student_profiles(id) ON DELETE CASCADE;

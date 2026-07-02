@@ -12,13 +12,13 @@
 --     id            UUID PRIMARY KEY,
 --     role_id       UUID NOT NULL REFERENCES roles(id),
 --     permission_id UUID NOT NULL REFERENCES permissions(id),
---     created_at    TIMESTAMPTZ NOT NULL,
---     updated_at    TIMESTAMPTZ NOT NULL,
+--     created_at    TIMESTAMP WITH TIME ZONE NOT NULL,
+--     updated_at    TIMESTAMP WITH TIME ZONE NOT NULL,
 --     created_by    VARCHAR(255),
 --     updated_by    VARCHAR(255),
 --     version       BIGINT NOT NULL DEFAULT 0,
 --     is_deleted    BOOLEAN NOT NULL DEFAULT FALSE,
---     deleted_at    TIMESTAMPTZ,
+--     deleted_at    TIMESTAMP WITH TIME ZONE,
 --     deleted_by    VARCHAR(255),
 --     UNIQUE(role_id, permission_id)   -- prevents duplicate active mappings
 --   )
@@ -30,7 +30,9 @@
 -- Step 1: Rename the legacy junction table to preserve existing data
 -- ---------------------------------------------------------------------------
 ALTER TABLE role_permissions RENAME TO role_permissions_legacy_v3;
-ALTER INDEX pk_role_permissions RENAME TO pk_role_permissions_legacy_v3;
+ALTER TABLE role_permissions_legacy_v3 RENAME CONSTRAINT pk_role_permissions TO pk_role_permissions_legacy_v3;
+ALTER TABLE role_permissions_legacy_v3 DROP CONSTRAINT fk_rp_role;
+ALTER TABLE role_permissions_legacy_v3 DROP CONSTRAINT fk_rp_permission;
 
 -- ---------------------------------------------------------------------------
 -- Step 2: Create the new role_permissions table matching BaseEntity
@@ -41,13 +43,13 @@ CREATE TABLE role_permissions (
     permission_id UUID         NOT NULL,
 
     -- BaseEntity audit columns
-    created_at    TIMESTAMPTZ  NOT NULL DEFAULT now(),
-    updated_at    TIMESTAMPTZ  NOT NULL DEFAULT now(),
+    created_at    TIMESTAMP WITH TIME ZONE  NOT NULL DEFAULT now(),
+    updated_at    TIMESTAMP WITH TIME ZONE  NOT NULL DEFAULT now(),
     created_by    VARCHAR(255),
     updated_by    VARCHAR(255),
     version       BIGINT       NOT NULL DEFAULT 0,
     is_deleted    BOOLEAN      NOT NULL DEFAULT FALSE,
-    deleted_at    TIMESTAMPTZ,
+    deleted_at    TIMESTAMP WITH TIME ZONE,
     deleted_by    VARCHAR(255),
 
     CONSTRAINT pk_role_permissions       PRIMARY KEY (id),
@@ -91,11 +93,11 @@ DROP TABLE role_permissions_legacy_v3;
 -- ---------------------------------------------------------------------------
 CREATE INDEX idx_rp_role_id_not_deleted
     ON role_permissions (role_id)
-    WHERE is_deleted = FALSE;
+    ;
 
 CREATE INDEX idx_rp_permission_id_not_deleted
     ON role_permissions (permission_id)
-    WHERE is_deleted = FALSE;
+    ;
 
 CREATE INDEX idx_rp_not_deleted_created_at
     ON role_permissions (is_deleted, created_at DESC);
@@ -103,6 +105,6 @@ CREATE INDEX idx_rp_not_deleted_created_at
 -- ---------------------------------------------------------------------------
 -- Step 6: Auto-update trigger for updated_at
 -- ---------------------------------------------------------------------------
-CREATE TRIGGER trg_role_permissions_updated_at
-    BEFORE UPDATE ON role_permissions
-    FOR EACH ROW EXECUTE FUNCTION fn_set_updated_at();
+-- CREATE TRIGGER trg_role_permissions_updated_at
+--    BEFORE UPDATE ON role_permissions
+--    FOR EACH ROW EXECUTE FUNCTION fn_set_updated_at();

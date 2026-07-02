@@ -41,4 +41,41 @@ public class Application extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "resume_attachment_id")
     private com.zencube.registry.attachment.entity.Attachment resume;
+
+    @Column(name = "current_handler_id")
+    private java.util.UUID currentHandlerId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "interview_event_id")
+    private com.zencube.registry.calendar.entity.CalendarEvent interviewEvent;
+
+    public void assignHandler(java.util.UUID hrId) {
+        if (this.currentHandlerId != null) {
+            throw new IllegalStateException("Application is already assigned.");
+        }
+        this.currentHandlerId = hrId;
+    }
+
+    public void reassignHandler(java.util.UUID hrId) {
+        if (this.currentHandlerId == null) {
+            throw new IllegalStateException("Application is not currently assigned. Use assignHandler instead.");
+        }
+        this.currentHandlerId = hrId;
+    }
+
+    public void unassignHandler() {
+        this.currentHandlerId = null;
+    }
+
+    public void assignInterviewEvent(com.zencube.registry.calendar.entity.CalendarEvent event) {
+        this.interviewEvent = event;
+    }
+
+    public void removeInterviewEvent() {
+        this.interviewEvent = null;
+    }
+
+    public boolean hasInterviewScheduled() {
+        return this.interviewEvent != null;
+    }
 }

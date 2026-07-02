@@ -1,6 +1,5 @@
 package com.zencube.registry.passwordreset.service.impl;
 
-import com.zencube.registry.auth.email.EmailService;
 import com.zencube.registry.auth.entity.User;
 import com.zencube.registry.auth.repository.UserRepository;
 import com.zencube.registry.common.exception.InvalidTokenException;
@@ -32,7 +31,7 @@ public class PasswordResetServiceImpl implements PasswordResetService {
 
     private final UserRepository userRepository;
     private final PasswordResetTokenRepository passwordResetTokenRepository;
-    private final EmailService emailService;
+    private final com.zencube.registry.scheduler.service.TaskSchedulerService taskSchedulerService;
     private final PasswordEncoder passwordEncoder;
     private final SessionRepository sessionRepository;
 
@@ -64,7 +63,17 @@ public class PasswordResetServiceImpl implements PasswordResetService {
         
         passwordResetTokenRepository.save(resetToken);
 
-        emailService.sendPasswordResetEmail(user.getEmail(), rawToken);
+        taskSchedulerService.enqueueTask(
+                com.zencube.registry.scheduler.dto.TaskPayload.builder()
+                        .taskType("EMAIL_DELIVERY")
+                        .data(java.util.Map.of(
+                                "recipientId", user.getId().toString(),
+                                "eventType", com.zencube.registry.notification.enums.NotificationEventType.PASSWORD_RESET.name(),
+                                "resetLink", "http://localhost:3000/reset-password?token=" + rawToken,
+                                "userName", user.getFirstName()
+                        ))
+                        .build()
+        );
         log.info("Password reset email sent to user id={}", user.getId());
     }
 

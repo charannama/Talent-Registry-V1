@@ -1,4 +1,4 @@
--- V50__create_enterprise_access_audits.sql
+﻿-- V50__create_enterprise_access_audits.sql
 
 CREATE TABLE enterprise_access_audits (
     id UUID PRIMARY KEY,

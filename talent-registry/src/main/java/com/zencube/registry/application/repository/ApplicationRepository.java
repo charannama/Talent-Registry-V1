@@ -73,4 +73,10 @@ public interface ApplicationRepository extends JpaRepository<Application, UUID>,
                    "FROM applications a " +
                    "WHERE a.status IN ('SELECTED', 'REJECTED')", nativeQuery = true)
     Double calculateOverallAverageProcessingTimeDays();
+
+    List<Application> findByCurrentHandlerId(UUID handlerId);
+
+    List<Application> findByCurrentHandlerIdIsNull();
+
+    int countByCurrentHandlerIdIsNotNull();
 }

@@ -1,12 +1,12 @@
--- V38__talent_search_module.sql
+﻿-- V38__talent_search_module.sql
 
 ALTER TABLE student_profiles
-ADD COLUMN profile_visible BOOLEAN DEFAULT TRUE,
-ADD COLUMN suspended BOOLEAN DEFAULT FALSE,
-ADD COLUMN profile_views BIGINT DEFAULT 0,
-ADD COLUMN highest_project_type VARCHAR(50),
-ADD COLUMN searchable BOOLEAN DEFAULT TRUE,
-ADD COLUMN talent_qualified BOOLEAN DEFAULT FALSE;
+ADD COLUMN profile_visible BOOLEAN DEFAULT TRUE;
+ALTER TABLE student_profiles ADD COLUMN suspended BOOLEAN DEFAULT FALSE;
+ALTER TABLE student_profiles ADD COLUMN profile_views BIGINT DEFAULT 0;
+ALTER TABLE student_profiles ADD COLUMN highest_project_type VARCHAR(50);
+ALTER TABLE student_profiles ADD COLUMN searchable BOOLEAN DEFAULT TRUE;
+ALTER TABLE student_profiles ADD COLUMN talent_qualified BOOLEAN DEFAULT FALSE;
 
 CREATE INDEX idx_student_profiles_highest_proj ON student_profiles(highest_project_type);
 CREATE INDEX idx_student_profiles_talent_qual ON student_profiles(talent_qualified);

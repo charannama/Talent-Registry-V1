@@ -80,7 +80,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         final String requestURI = request.getRequestURI();
 
         // Skip JWT validation for auth endpoints
-        if (requestURI.startsWith("/api/v1/auth/") || requestURI.startsWith("/swagger-ui") || requestURI.startsWith("/v3/api-docs")) {
+        if (requestURI.startsWith("/swagger-ui") || requestURI.startsWith("/v3/api-docs")) {
             filterChain.doFilter(request, response);
             return;
         }

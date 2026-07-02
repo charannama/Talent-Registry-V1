@@ -1,4 +1,4 @@
--- V33__create_student_projects.sql
+﻿-- V33__create_student_projects.sql
 
 CREATE TABLE student_projects (
     id UUID PRIMARY KEY,
@@ -9,8 +9,8 @@ CREATE TABLE student_projects (
     live_url VARCHAR(500),
     completed BOOLEAN DEFAULT FALSE,
     project_level INT,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
     created_by UUID,
     updated_by UUID
 );

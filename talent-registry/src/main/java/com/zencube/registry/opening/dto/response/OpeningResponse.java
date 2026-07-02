@@ -132,4 +132,13 @@ public class OpeningResponse {
 
     @Schema(description = "Whether the enterprise can revise and resubmit after rejection", example = "true")
     private Boolean canResubmit;
+
+    @Schema(description = "Target graduation year filter", example = "2024")
+    private Integer graduationYearFilter;
+
+    @Schema(description = "Minimum salary range offered", example = "80000.00")
+    private BigDecimal salaryRangeMin;
+
+    @Schema(description = "Maximum salary range offered", example = "120000.00")
+    private BigDecimal salaryRangeMax;
 }

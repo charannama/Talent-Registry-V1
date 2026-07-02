@@ -1,7 +1,7 @@
-DROP TABLE IF EXISTS email_verification_tokens CASCADE;
+﻿DROP TABLE IF EXISTS email_verification_tokens CASCADE;
 
 CREATE TABLE email_verification_tokens (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     token VARCHAR(255) NOT NULL UNIQUE,
     user_id UUID NOT NULL REFERENCES users(id),
     expires_at TIMESTAMP WITH TIME ZONE NOT NULL,

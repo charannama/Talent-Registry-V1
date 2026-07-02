@@ -105,7 +105,7 @@ public class OAuth2TokenExchangeServiceImpl implements OAuth2TokenExchangeServic
             isNewUser = true;
 
             // Auto-assign STUDENT role
-            Role studentRole = roleRepository.findByNameAndDeletedFalse(RoleType.STUDENT.name())
+            Role studentRole = roleRepository.findByRoleTypeAndDeletedFalse(RoleType.STUDENT)
                     .orElseThrow(() -> new IllegalStateException("STUDENT role not found"));
             
             UserRole userRole = new UserRole();

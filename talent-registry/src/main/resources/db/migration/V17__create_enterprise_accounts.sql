@@ -1,4 +1,4 @@
-CREATE TABLE enterprise_accounts (
+﻿CREATE TABLE enterprise_accounts (
 
     id UUID PRIMARY KEY,
 

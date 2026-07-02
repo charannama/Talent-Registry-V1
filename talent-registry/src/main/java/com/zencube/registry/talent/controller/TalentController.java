@@ -22,7 +22,7 @@ public class TalentController {
     private final TalentService talentService;
 
     @GetMapping("/search")
-    @PreAuthorize("hasAnyRole('ENTERPRISE', 'HR', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('ENTERPRISE_RECRUITER', 'HR_STAFF', 'ADMIN')")
     public ResponseEntity<ApiResponse<TalentSearchResponse>> searchTalent(
             TalentSearchRequest request,
             Pageable pageable) {
@@ -31,7 +31,7 @@ public class TalentController {
     }
 
     @GetMapping("/profile/{profileId}")
-    @PreAuthorize("hasAnyRole('ENTERPRISE', 'HR', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('ENTERPRISE_RECRUITER', 'HR_STAFF', 'ADMIN')")
     public ResponseEntity<ApiResponse<TalentProfileResponse>> getProfile(
             @PathVariable UUID profileId,
             HttpServletRequest request) {
@@ -40,17 +40,17 @@ public class TalentController {
     }
 
     @PostMapping("/profile/{profileId}/suspend")
-    @PreAuthorize("hasAnyRole('HR', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('HR_STAFF', 'ADMIN')")
     public ResponseEntity<ApiResponse<Void>> suspendProfile(
             @PathVariable UUID profileId,
             @jakarta.validation.Valid @RequestBody com.zencube.registry.talent.dto.request.SuspendProfileRequest suspendRequest) {
-        String suspendedBy = org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getName();
-        talentService.suspendProfile(profileId, suspendRequest.getReason(), suspendedBy);
+        com.zencube.registry.security.model.CustomUserDetails userDetails = (com.zencube.registry.security.model.CustomUserDetails) org.springframework.security.core.context.SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        talentService.suspendProfile(profileId, suspendRequest.getReason(), userDetails.getUserId());
         return ResponseEntity.ok(ApiResponse.success("Profile suspended successfully", null));
     }
 
     @PostMapping("/profile/{profileId}/reinstate")
-    @PreAuthorize("hasAnyRole('HR', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('HR_STAFF', 'ADMIN')")
     public ResponseEntity<ApiResponse<Void>> reinstateProfile(
             @PathVariable UUID profileId) {
         talentService.reinstateProfile(profileId);

@@ -1,4 +1,4 @@
--- V43__create_profile_access_audit.sql
+﻿-- V43__create_profile_access_audit.sql
 
 CREATE TABLE profile_access_audits
 (

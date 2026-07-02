@@ -83,7 +83,7 @@ public class CustomUserDetailsService implements UserDetailsService {
             if (role.isDeleted()) continue;
 
             // Add Role authority
-            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName().toUpperCase()));
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getRoleType().name()));
 
             // Add Permission authorities
             for (RolePermission rolePermission : role.getRolePermissions()) {

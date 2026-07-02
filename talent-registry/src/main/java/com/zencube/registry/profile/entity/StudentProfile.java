@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.Instant;
+import java.util.UUID;
 
 @Entity
 @Table(name = "student_profiles")
@@ -90,5 +91,32 @@ public class StudentProfile extends BaseEntity {
 
     private Instant suspendedAt;
 
-    private String suspendedBy;
+    private UUID suspendedBy;
+
+    public void suspend(UUID adminId, String reason) {
+        this.suspended = true;
+        this.profileVisible = false;
+        this.suspendedAt = Instant.now();
+        this.suspendedBy = adminId;
+        this.suspensionReason = reason;
+    }
+
+    public void reactivate() {
+        this.suspended = false;
+        this.profileVisible = true;
+        this.suspendedAt = null;
+        this.suspendedBy = null;
+        this.suspensionReason = null;
+    }
+
+    public void hideProfile() {
+        this.profileVisible = false;
+    }
+
+    public void showProfile() {
+        if (this.suspended != null && this.suspended) {
+            throw new IllegalStateException("Cannot show a suspended profile.");
+        }
+        this.profileVisible = true;
+    }
 }

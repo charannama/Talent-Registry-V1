@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Verify Your Email</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+    <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+        <h2 style="color: #0056b3;">Welcome to ZenCube Talent Registry!</h2>
+        <p>Hi <span th:text="${userName}">User</span>,</p>
+        <p>Thank you for registering. Please click the button below to verify your email address:</p>
+        <p style="text-align: center; margin: 30px 0;">
+            <a th:href="${verificationLink}" style="background-color: #0056b3; color: white; padding: 12px 20px; text-decoration: none; border-radius: 4px; font-weight: bold;">Verify Email Address</a>
+        </p>
+        <p>If the button doesn't work, you can copy and paste this link into your browser:</p>
+        <p><a th:href="${verificationLink}" th:text="${verificationLink}">link</a></p>
+        <p>Best regards,<br>The ZenCube Team</p>
+    </div>
+</body>
+</html>

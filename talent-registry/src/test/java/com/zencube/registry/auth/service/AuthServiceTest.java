@@ -8,7 +8,6 @@ import com.zencube.registry.auth.enums.AuthProvider;
 import com.zencube.registry.auth.repository.RoleRepository;
 import com.zencube.registry.auth.repository.UserRepository;
 import com.zencube.registry.auth.service.impl.AuthServiceImpl;
-import com.zencube.registry.auth.email.EmailService;
 import com.zencube.registry.auth.verification.repository.EmailVerificationTokenRepository;
 import com.zencube.registry.auth.verification.entity.EmailVerificationToken;
 import com.zencube.registry.common.enums.RoleType;
@@ -53,7 +52,7 @@ class AuthServiceTest {
     private PasswordEncoder passwordEncoder;
 
     @Mock
-    private EmailService emailService;
+    private com.zencube.registry.scheduler.service.TaskSchedulerService taskSchedulerService;
 
     @InjectMocks
     private AuthServiceImpl authService;
@@ -113,7 +112,7 @@ class AuthServiceTest {
         verify(userRepository).save(any(User.class));
         verify(userRoleRepository).save(any());
         verify(emailVerificationTokenRepository).save(any());
-        verify(emailService).sendVerificationEmail(eq(request.email()), anyString());
+        verify(taskSchedulerService).enqueueTask(any());
     }
 
     @Test
@@ -123,7 +122,7 @@ class AuthServiceTest {
         assertThrows(ConflictException.class, () -> authService.registerEnterprise(request));
 
         verify(userRepository, never()).save(any(User.class));
-        verify(emailService, never()).sendVerificationEmail(anyString(), anyString());
+        verify(taskSchedulerService, never()).enqueueTask(any());
     }
 
     @Test
@@ -134,7 +133,7 @@ class AuthServiceTest {
         assertThrows(ConflictException.class, () -> authService.registerEnterprise(request));
 
         verify(userRepository, never()).save(any(User.class));
-        verify(emailService, never()).sendVerificationEmail(anyString(), anyString());
+        verify(taskSchedulerService, never()).enqueueTask(any());
     }
 
     @Test
@@ -165,7 +164,7 @@ class AuthServiceTest {
         assertThrows(BusinessException.class, () -> authService.registerEnterprise(request));
 
         verify(userRepository, never()).save(any(User.class));
-        verify(emailService, never()).sendVerificationEmail(anyString(), anyString());
+        verify(taskSchedulerService, never()).enqueueTask(any());
     }
 
     @Test
@@ -210,7 +209,7 @@ class AuthServiceTest {
         authService.resendVerification(savedUser.getEmail());
 
         verify(emailVerificationTokenRepository).save(any(EmailVerificationToken.class));
-        verify(emailService).sendVerificationEmail(eq(savedUser.getEmail()), anyString());
+        verify(taskSchedulerService).enqueueTask(any());
     }
 
     @Test
@@ -223,7 +222,7 @@ class AuthServiceTest {
         authService.resendVerification(savedUser.getEmail());
 
         verify(emailVerificationTokenRepository, never()).save(any());
-        verify(emailService, never()).sendVerificationEmail(anyString(), anyString());
+        verify(taskSchedulerService, never()).enqueueTask(any());
     }
 
     @Test
@@ -233,6 +232,6 @@ class AuthServiceTest {
         authService.resendVerification("nonexistent@example.com");
 
         verify(emailVerificationTokenRepository, never()).save(any());
-        verify(emailService, never()).sendVerificationEmail(anyString(), anyString());
+        verify(taskSchedulerService, never()).enqueueTask(any());
     }
 }

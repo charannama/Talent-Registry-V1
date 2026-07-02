@@ -40,6 +40,10 @@ public class OpeningMapper {
         opening.setStatus(OpeningStatus.DRAFT);
         opening.setRequiredSkills(skillsStr);
         opening.setGraduationYears(gradYearsStr);
+        opening.setGraduationYearFilter(request.getGraduationYearFilter());
+        opening.setSalaryRangeMin(request.getSalaryRangeMin());
+        opening.setSalaryRangeMax(request.getSalaryRangeMax());
+        opening.setFeatured(request.getFeatured() != null ? request.getFeatured() : false);
         
         return opening;
     }
@@ -74,6 +78,9 @@ public class OpeningMapper {
                 .status(opening.getStatus())
                 .requiredSkills(requiredSkills)
                 .graduationYears(graduationYears)
+                .graduationYearFilter(opening.getGraduationYearFilter())
+                .salaryRangeMin(opening.getSalaryRangeMin())
+                .salaryRangeMax(opening.getSalaryRangeMax())
                 .publishedAt(opening.getPublishedAt())
                 .approvedBy(opening.getApprovedBy())
                 .approvedAt(opening.getApprovedAt())

@@ -128,6 +128,28 @@ public class Opening extends BaseEntity {
     @Column(name = "can_resubmit")
     private Boolean canResubmit;
 
+    @Column(name = "graduation_year_filter")
+    private Integer graduationYearFilter;
+
+    @Column(name = "salary_range_min")
+    private BigDecimal salaryRangeMin;
+
+    @Column(name = "salary_range_max")
+    private BigDecimal salaryRangeMax;
+
+    public void markFeatured() {
+        this.featured = true;
+    }
+
+    public void removeFeatured() {
+        this.featured = false;
+    }
+
+    public boolean supportsGraduationYear(Integer year) {
+        if (this.graduationYearFilter == null) return true;
+        return this.graduationYearFilter.equals(year);
+    }
+
     @PrePersist
     public void prePersist() {
         if (this.status == null) {

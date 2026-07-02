@@ -65,6 +65,20 @@ public class CreateOpeningRequest {
     @Schema(description = "List of required skills", example = "[\"Java\", \"Spring Boot\", \"PostgreSQL\"]")
     private List<String> requiredSkills;
 
-    @Schema(description = "Target graduation years", example = "[\"2024\", \"2025\"]")
+    @Schema(description = "Target graduation years (Legacy array format)", example = "[\"2024\", \"2025\"]")
     private List<String> graduationYears;
+
+    @Schema(description = "Target graduation year filter", example = "2024")
+    private Integer graduationYearFilter;
+
+    @DecimalMin(value = "0.0", message = "Minimum salary range must be greater than or equal to 0")
+    @Schema(description = "Minimum salary range offered", example = "80000.00")
+    private BigDecimal salaryRangeMin;
+
+    @DecimalMin(value = "0.0", message = "Maximum salary range must be greater than or equal to 0")
+    @Schema(description = "Maximum salary range offered", example = "120000.00")
+    private BigDecimal salaryRangeMax;
+
+    @Schema(description = "Whether the opening is featured on the dashboard", example = "false")
+    private Boolean featured;
 }

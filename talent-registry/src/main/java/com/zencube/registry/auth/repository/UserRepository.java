@@ -29,6 +29,8 @@ public interface UserRepository extends JpaRepository<User, UUID> {
      * Checks whether an email is already registered (including soft-deleted records).
      * Use this before registration to prevent re-use of a deleted account's email.
      */
+    Optional<User> findByIdAndDeletedFalse(UUID id);
+
     boolean existsByEmail(String email);
 
     /**
@@ -70,3 +72,4 @@ public interface UserRepository extends JpaRepository<User, UUID> {
     @Query("UPDATE User u SET u.emailVerified = true WHERE u.id = :id")
     void markEmailVerified(@Param("id") UUID id);
 }
+

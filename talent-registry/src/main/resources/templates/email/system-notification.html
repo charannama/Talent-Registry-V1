@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>System Notification</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+    <div style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px;">
+        <h2 style="color: #0056b3;" th:text="${subject}">System Notification</h2>
+        <p>Hi <span th:text="${userName}">User</span>,</p>
+        <p th:text="${message}">You have a new notification from the system.</p>
+        <p>Best regards,<br>The ZenCube Team</p>
+    </div>
+</body>
+</html>

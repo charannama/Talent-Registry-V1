@@ -165,6 +165,14 @@ public class GlobalExceptionHandler {
     // Spring Security
     // -------------------------------------------------------------------------
 
+    @ExceptionHandler(org.springframework.security.authentication.BadCredentialsException.class)
+    public ResponseEntity<ErrorResponse> handleBadCredentialsException(
+            org.springframework.security.authentication.BadCredentialsException ex, HttpServletRequest request) {
+        log.warn("Bad credentials: {} | path={}", ex.getMessage(), request.getRequestURI());
+        return buildResponse(HttpStatus.UNAUTHORIZED, "UNAUTHORIZED",
+                "Invalid email or password.", request);
+    }
+
     @ExceptionHandler({AuthenticationException.class, InsufficientAuthenticationException.class})
     public ResponseEntity<ErrorResponse> handleAuthenticationException(
             AuthenticationException ex, HttpServletRequest request) {
@@ -191,6 +199,14 @@ public class GlobalExceptionHandler {
         log.warn("No handler found: {} {}", ex.getHttpMethod(), ex.getRequestURL());
         return buildResponse(HttpStatus.NOT_FOUND, "NOT_FOUND",
                 "The requested endpoint does not exist: " + ex.getRequestURL(), request);
+    }
+
+    @ExceptionHandler(org.springframework.web.servlet.resource.NoResourceFoundException.class)
+    public ResponseEntity<ErrorResponse> handleNoResourceFound(
+            org.springframework.web.servlet.resource.NoResourceFoundException ex, HttpServletRequest request) {
+        log.warn("No resource found: {} | path={}", ex.getMessage(), request.getRequestURI());
+        return buildResponse(HttpStatus.NOT_FOUND, "NOT_FOUND",
+                "The requested endpoint does not exist: " + request.getRequestURI(), request);
     }
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
@@ -243,7 +259,7 @@ public class GlobalExceptionHandler {
             Exception ex, HttpServletRequest request) {
         log.error("Unhandled exception | path={}", request.getRequestURI(), ex);
         return buildResponse(HttpStatus.INTERNAL_SERVER_ERROR, "INTERNAL_SERVER_ERROR",
-                "An unexpected error occurred. Please try again later.", request);
+                "An unexpected error occurred. Please try again later. Details: " + ex.getMessage() + " - " + (ex.getCause() != null ? ex.getCause().getMessage() : ""), request);
     }
 
     // -------------------------------------------------------------------------

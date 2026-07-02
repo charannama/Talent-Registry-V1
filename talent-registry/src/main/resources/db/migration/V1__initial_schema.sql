@@ -81,7 +81,7 @@ CREATE TABLE users (
     gender        gender,
     avatar_url    VARCHAR(500),
     tenant_id     UUID,                          -- future multi-tenancy hook
-    last_login_at TIMESTAMPTZ,
+    last_login_at TIMESTAMP WITH TIME ZONE,
     CONSTRAINT pk_users PRIMARY KEY (id),
     CONSTRAINT uq_users_email UNIQUE (email)
 );
@@ -101,8 +101,8 @@ CREATE TABLE students (
     linkedin_url        VARCHAR(500),
     github_url          VARCHAR(500),
     portfolio_url       VARCHAR(500),
-    skills              TEXT[],                  -- simple array of skill strings
-    languages           TEXT[],
+    skills              TEXT ARRAY,                  -- simple array of skill strings
+    languages           TEXT ARRAY,
     years_of_experience SMALLINT,
     availability        employment_type,
     preferred_work_mode work_mode,
@@ -128,7 +128,7 @@ CREATE TABLE enterprises (
     hq_location   VARCHAR(255),
     description   TEXT,
     status        status      NOT NULL DEFAULT 'PENDING_VERIFICATION',
-    verified_at   TIMESTAMPTZ,
+    verified_at   TIMESTAMP WITH TIME ZONE,
     CONSTRAINT pk_enterprises PRIMARY KEY (id),
     CONSTRAINT uq_enterprises_slug UNIQUE (slug)
 );
@@ -149,8 +149,8 @@ CREATE TABLE openings (
     salary_min      NUMERIC(12, 2),
     salary_max      NUMERIC(12, 2),
     currency        CHAR(3)         NOT NULL DEFAULT 'USD',
-    skills_required TEXT[],
-    closes_at       TIMESTAMPTZ,
+    skills_required TEXT ARRAY,
+    closes_at       TIMESTAMP WITH TIME ZONE,
     status          status          NOT NULL DEFAULT 'ACTIVE',
     CONSTRAINT pk_openings PRIMARY KEY (id),
     CONSTRAINT fk_openings_enterprise FOREIGN KEY (enterprise_id) REFERENCES enterprises (id) ON DELETE CASCADE
@@ -166,7 +166,7 @@ CREATE TABLE applications (
     student_id       UUID               NOT NULL,
     cover_letter     TEXT,
     status           application_status NOT NULL DEFAULT 'SUBMITTED',
-    status_changed_at TIMESTAMPTZ,
+    status_changed_at TIMESTAMP WITH TIME ZONE,
     notes            TEXT,
     CONSTRAINT pk_applications PRIMARY KEY (id),
     CONSTRAINT fk_applications_opening FOREIGN KEY (opening_id) REFERENCES openings (id) ON DELETE CASCADE,
@@ -192,7 +192,7 @@ CREATE TABLE pipeline_entries (
     id              UUID NOT NULL DEFAULT gen_random_uuid(),
     application_id  UUID NOT NULL,
     stage_id        UUID NOT NULL,
-    moved_at        TIMESTAMPTZ NOT NULL DEFAULT now(),
+    moved_at        TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
     moved_by        UUID,
     CONSTRAINT pk_pipeline_entries PRIMARY KEY (id),
     CONSTRAINT fk_pe_application FOREIGN KEY (application_id) REFERENCES applications (id) ON DELETE CASCADE,
@@ -208,7 +208,7 @@ CREATE TABLE express_interests (
     student_id  UUID NOT NULL,
     opening_id  UUID NOT NULL,
     message     TEXT,
-    seen_at     TIMESTAMPTZ,
+    seen_at     TIMESTAMP WITH TIME ZONE,
     CONSTRAINT pk_express_interests PRIMARY KEY (id),
     CONSTRAINT fk_ei_student FOREIGN KEY (student_id) REFERENCES students (id) ON DELETE CASCADE,
     CONSTRAINT fk_ei_opening FOREIGN KEY (opening_id) REFERENCES openings (id) ON DELETE CASCADE,
@@ -228,7 +228,7 @@ CREATE TABLE chat_threads (
 CREATE TABLE chat_thread_participants (
     thread_id UUID NOT NULL,
     user_id   UUID NOT NULL,
-    joined_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    joined_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
     CONSTRAINT pk_chat_participants PRIMARY KEY (thread_id, user_id),
     CONSTRAINT fk_ctp_thread FOREIGN KEY (thread_id) REFERENCES chat_threads (id) ON DELETE CASCADE,
     CONSTRAINT fk_ctp_user   FOREIGN KEY (user_id)   REFERENCES users (id)         ON DELETE CASCADE
@@ -239,8 +239,8 @@ CREATE TABLE chat_messages (
     thread_id UUID NOT NULL,
     sender_id UUID NOT NULL,
     body      TEXT NOT NULL,
-    sent_at   TIMESTAMPTZ NOT NULL DEFAULT now(),
-    read_at   TIMESTAMPTZ,
+    sent_at   TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
+    read_at   TIMESTAMP WITH TIME ZONE,
     CONSTRAINT pk_chat_messages PRIMARY KEY (id),
     CONSTRAINT fk_cm_thread FOREIGN KEY (thread_id) REFERENCES chat_threads (id) ON DELETE CASCADE,
     CONSTRAINT fk_cm_sender FOREIGN KEY (sender_id) REFERENCES users (id)
@@ -256,8 +256,8 @@ CREATE TABLE calendar_events (
     title          VARCHAR(255)        NOT NULL,
     description    TEXT,
     event_type     calendar_event_type NOT NULL DEFAULT 'MEETING',
-    starts_at      TIMESTAMPTZ         NOT NULL,
-    ends_at        TIMESTAMPTZ,
+    starts_at      TIMESTAMP WITH TIME ZONE         NOT NULL,
+    ends_at        TIMESTAMP WITH TIME ZONE,
     location       VARCHAR(255),
     meeting_url    VARCHAR(500),
     application_id UUID,
@@ -288,8 +288,8 @@ CREATE TABLE notifications (
     body          TEXT,
     reference_id  UUID,                              -- generic FK to any entity
     reference_type VARCHAR(50),
-    read_at       TIMESTAMPTZ,
-    sent_at       TIMESTAMPTZ          NOT NULL DEFAULT now(),
+    read_at       TIMESTAMP WITH TIME ZONE,
+    sent_at       TIMESTAMP WITH TIME ZONE          NOT NULL DEFAULT now(),
     CONSTRAINT pk_notifications PRIMARY KEY (id),
     CONSTRAINT fk_notifications_recipient FOREIGN KEY (recipient_id) REFERENCES users (id) ON DELETE CASCADE
 );
@@ -341,7 +341,7 @@ CREATE TABLE activity_logs (
     description    TEXT,
     ip_address     VARCHAR(45),
     user_agent     VARCHAR(500),
-    occurred_at    TIMESTAMPTZ  NOT NULL DEFAULT now(),
+    occurred_at    TIMESTAMP WITH TIME ZONE  NOT NULL DEFAULT now(),
     CONSTRAINT pk_activity_logs PRIMARY KEY (id)
 );
 
@@ -375,7 +375,7 @@ CREATE TABLE success_stories (
     enterprise_id UUID,
     title         VARCHAR(255) NOT NULL,
     body          TEXT,
-    published_at  TIMESTAMPTZ,
+    published_at  TIMESTAMP WITH TIME ZONE,
     is_published  BOOLEAN     NOT NULL DEFAULT FALSE,
     CONSTRAINT pk_success_stories PRIMARY KEY (id),
     CONSTRAINT fk_ss_student    FOREIGN KEY (student_id)    REFERENCES students (id)    ON DELETE CASCADE,
@@ -397,7 +397,7 @@ CREATE TABLE feature_flags (
 );
 
 -- ---------------------------------------------------------------------------
--- JOURNAL  (private notes by users — students or recruiters)
+-- JOURNAL  (private notes by users Ã¢â‚¬â€ students or recruiters)
 -- ---------------------------------------------------------------------------
 
 CREATE TABLE journal_entries (
@@ -405,7 +405,7 @@ CREATE TABLE journal_entries (
     author_id  UUID NOT NULL,
     title      VARCHAR(255),
     body       TEXT NOT NULL,
-    tags       TEXT[],
+    tags       TEXT ARRAY,
     is_private BOOLEAN NOT NULL DEFAULT TRUE,
     CONSTRAINT pk_journal_entries PRIMARY KEY (id),
     CONSTRAINT fk_je_author FOREIGN KEY (author_id) REFERENCES users (id) ON DELETE CASCADE
@@ -424,7 +424,7 @@ CREATE INDEX idx_applications_opening   ON applications (opening_id);
 CREATE INDEX idx_applications_student   ON applications (student_id);
 CREATE INDEX idx_applications_status    ON applications (status);
 CREATE INDEX idx_notifications_recipient ON notifications (recipient_id);
-CREATE INDEX idx_notifications_read_at  ON notifications (read_at) WHERE read_at IS NULL;
+CREATE INDEX idx_notifications_read_at  ON notifications (read_at);
 CREATE INDEX idx_activity_logs_actor    ON activity_logs (actor_id);
 CREATE INDEX idx_activity_logs_entity   ON activity_logs (entity_type, entity_id);
 CREATE INDEX idx_taggings_ref           ON taggings (reference_type, reference_id);

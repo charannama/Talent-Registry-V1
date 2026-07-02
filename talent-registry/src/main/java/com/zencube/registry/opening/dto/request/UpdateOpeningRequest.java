@@ -59,6 +59,18 @@ public class UpdateOpeningRequest {
     @Schema(description = "List of required skills", example = "[\"Java\", \"Spring Boot\"]")
     private List<String> requiredSkills;
 
-    @Schema(description = "Target graduation years", example = "[\"2024\", \"2025\"]")
+    @Schema(description = "Target graduation years (Legacy array format)", example = "[\"2024\", \"2025\"]")
     private List<String> graduationYears;
+
+    @Schema(description = "Target graduation year filter", example = "2024")
+    private Integer graduationYearFilter;
+
+    @Schema(description = "Minimum salary range offered", example = "80000.00")
+    private BigDecimal salaryRangeMin;
+
+    @Schema(description = "Maximum salary range offered", example = "120000.00")
+    private BigDecimal salaryRangeMax;
+
+    @Schema(description = "Whether the opening is featured on the dashboard", example = "false")
+    private Boolean featured;
 }

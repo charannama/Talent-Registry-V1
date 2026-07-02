@@ -1,10 +1,10 @@
--- V63__opening_remaining_features.sql
+﻿-- V63__opening_remaining_features.sql
 -- Add rejection fields and remaining permissions for Job Openings
 
 ALTER TABLE job_openings
-ADD COLUMN rejected_by UUID,
-ADD COLUMN rejected_at TIMESTAMPTZ,
-ADD COLUMN rejection_reason TEXT;
+ADD COLUMN rejected_by UUID;
+ALTER TABLE job_openings ADD COLUMN rejected_at TIMESTAMP WITH TIME ZONE;
+ALTER TABLE job_openings ADD COLUMN rejection_reason TEXT;
 
 -- Seed remaining permissions
 INSERT INTO permissions (id, name, code, description, created_at, updated_at, version, is_deleted)
@@ -13,7 +13,7 @@ VALUES
 (gen_random_uuid(), 'Close Job Opening', 'OPENING_CLOSE', 'Allows enterprise to close live job openings', NOW(), NOW(), 0, FALSE),
 (gen_random_uuid(), 'Archive Job Opening', 'OPENING_ARCHIVE', 'Allows enterprise to archive closed job openings', NOW(), NOW(), 0, FALSE),
 (gen_random_uuid(), 'View Job Opening', 'OPENING_VIEW', 'Allows viewing specific job openings', NOW(), NOW(), 0, FALSE)
-ON CONFLICT (code) DO NOTHING;
+;
 
 -- Map OPENING_UPDATE, OPENING_CLOSE, OPENING_ARCHIVE, OPENING_VIEW to ENTERPRISE_RECRUITER
 INSERT INTO role_permissions (id, role_id, permission_id, created_at, updated_at, version, is_deleted)

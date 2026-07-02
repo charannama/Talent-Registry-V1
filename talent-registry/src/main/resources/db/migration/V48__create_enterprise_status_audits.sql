@@ -1,4 +1,4 @@
-CREATE TABLE enterprise_status_audits (
+﻿CREATE TABLE enterprise_status_audits (
     id UUID PRIMARY KEY,
     enterprise_id UUID NOT NULL,
     actor_id UUID NOT NULL,

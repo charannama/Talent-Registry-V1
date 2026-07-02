@@ -1,0 +1,486 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.zencube:talent-registry >---------------------
+[INFO] Building  0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.5.14:run (default-cli) > test-compile @ talent-registry >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ talent-registry ---
+[INFO] Copying 3 resources from src\main\resources to target\classes
+[INFO] Copying 93 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ talent-registry ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 554 source files with javac [forked debug parameters release 17] to target\classes
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\main\java\com\zencube\registry\profile\service\impl\ProfileAuditServiceImpl.java:[60,62] [removal] <T>where(Specification<T>) in Specification has been deprecated and marked for removal
+  where T is a type-variable:
+    T extends Object declared in method <T>where(Specification<T>)
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ talent-registry ---
+[INFO] skip non existing resourceDirectory C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ talent-registry ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 92 source files with javac [forked debug parameters release 17] to target\test-classes
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[27,47] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[27,47] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[27,47] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[27,47] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[27,47] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[32,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[32,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[32,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[32,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[32,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[35,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[35,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[35,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[35,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[35,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[38,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[38,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[38,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[38,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[38,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[41,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[41,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[41,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[41,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[41,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[44,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[44,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[44,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[44,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[44,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[47,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[47,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[47,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[47,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\admin\controller\AdminControllerTest.java:[47,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\application\ApplicationEventIntegrationTest.java:[34,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\application\ApplicationEventIntegrationTest.java:[34,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\application\ApplicationEventIntegrationTest.java:[34,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\application\ApplicationEventIntegrationTest.java:[34,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\application\ApplicationEventIntegrationTest.java:[34,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\application\ApplicationEventIntegrationTest.java:[37,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\application\ApplicationEventIntegrationTest.java:[37,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\application\ApplicationEventIntegrationTest.java:[37,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\application\ApplicationEventIntegrationTest.java:[37,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\application\ApplicationEventIntegrationTest.java:[37,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\application\ApplicationEventIntegrationTest.java:[40,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\application\ApplicationEventIntegrationTest.java:[40,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\application\ApplicationEventIntegrationTest.java:[40,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\application\ApplicationEventIntegrationTest.java:[40,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\application\ApplicationEventIntegrationTest.java:[40,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[30,47] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[30,47] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[30,47] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[30,47] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[30,47] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[38,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[38,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[38,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[38,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[38,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[41,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[41,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[41,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[41,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[41,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[44,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[44,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[44,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[44,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[44,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[47,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[47,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[47,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[47,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[47,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[50,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[50,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[50,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[50,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EmailVerificationControllerTest.java:[50,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[30,47] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[30,47] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[30,47] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[30,47] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[30,47] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[38,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[38,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[38,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[38,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[38,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[41,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[41,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[41,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[41,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[41,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[44,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[44,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[44,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[44,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[WARNING] C:\Users\layar\Downloads\talent-registry\talent-registry\src\test\java\com\zencube\registry\auth\controller\EnterpriseRegistrationTest.java:[44,5] [removal] MockBean in org.springframework.boot.test.mock.mockito has been deprecated and marked for removal
+[INFO] 
+[INFO] <<< spring-boot:3.5.14:run (default-cli) < test-compile @ talent-registry <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.5.14:run (default-cli) @ talent-registry ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.14)
+
+2026-06-26T13:53:42.365+05:30  INFO 3860 --- [talent-registry] [           main] c.z.registry.TalentRegistryApplication   : Starting TalentRegistryApplication using Java 26.0.1 with PID 3860 (C:\Users\layar\Downloads\talent-registry\talent-registry\target\classes started by layar in C:\Users\layar\Downloads\talent-registry\talent-registry)
+2026-06-26T13:53:42.369+05:30  INFO 3860 --- [talent-registry] [           main] c.z.registry.TalentRegistryApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-06-26T13:53:46.095+05:30  INFO 3860 --- [talent-registry] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-26T13:53:47.204+05:30  INFO 3860 --- [talent-registry] [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1091 ms. Found 43 JPA repository interfaces.
+2026-06-26T13:53:49.344+05:30  INFO 3860 --- [talent-registry] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2026-06-26T13:53:49.381+05:30  INFO 3860 --- [talent-registry] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-26T13:53:49.383+05:30  INFO 3860 --- [talent-registry] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.54]
+2026-06-26T13:53:49.622+05:30  INFO 3860 --- [talent-registry] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-06-26T13:53:49.623+05:30  INFO 3860 --- [talent-registry] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7147 ms
+2026-06-26T13:53:50.687+05:30  INFO 3860 --- [talent-registry] [           main] com.zaxxer.hikari.HikariDataSource       : TalentRegistryPool - Starting...
+2026-06-26T13:53:51.094+05:30  INFO 3860 --- [talent-registry] [           main] com.zaxxer.hikari.pool.HikariPool        : TalentRegistryPool - Added connection conn0: url=jdbc:h2:mem:talent_registry user=SA
+2026-06-26T13:53:51.097+05:30  INFO 3860 --- [talent-registry] [           main] com.zaxxer.hikari.HikariDataSource       : TalentRegistryPool - Start completed.
+2026-06-26T13:53:51.197+05:30  INFO 3860 --- [talent-registry] [           main] org.flywaydb.core.FlywayExecutor         : Database: jdbc:h2:mem:talent_registry (H2 2.3)
+2026-06-26T13:53:51.519+05:30  INFO 3860 --- [talent-registry] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+2026-06-26T13:53:51.529+05:30  INFO 3860 --- [talent-registry] [           main] o.f.core.internal.command.DbValidate     : Successfully validated 88 migrations (execution time 00:00.272s)
+2026-06-26T13:53:51.549+05:30  INFO 3860 --- [talent-registry] [           main] org.flywaydb.core.Flyway                 : All configured schemas are empty; baseline operation skipped. A baseline or migration script with a lower version than the baseline version may execute if available. Check the Schemas parameter if this is not intended.
+2026-06-26T13:53:51.552+05:30  INFO 3860 --- [talent-registry] [           main] o.f.c.i.s.JdbcTableSchemaHistory         : Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+2026-06-26T13:53:51.608+05:30  INFO 3860 --- [talent-registry] [           main] o.f.core.internal.command.DbMigrate      : Current version of schema "PUBLIC": << Empty Schema >>
+2026-06-26T13:53:51.610+05:30  WARN 3860 --- [talent-registry] [           main] o.f.core.internal.command.DbMigrate      : outOfOrder mode is active. Migration of schema "PUBLIC" may not be reproducible.
+2026-06-26T13:53:51.646+05:30  INFO 3860 --- [talent-registry] [           main] o.f.core.internal.command.DbMigrate      : Migrating schema "PUBLIC" to version "1 - initial schema"
+2026-06-26T13:53:51.713+05:30 ERROR 3860 --- [talent-registry] [           main] o.f.core.internal.command.DbMigrate      : Migration of schema "PUBLIC" to version "1 - initial schema" failed! Please restore backups and roll back database and code!
+2026-06-26T13:53:51.724+05:30 ERROR 3860 --- [talent-registry] [           main] o.s.b.web.embedded.tomcat.TomcatStarter  : Error starting Tomcat context. Exception: org.springframework.beans.factory.UnsatisfiedDependencyException. Message: Error creating bean with name 'jwtAuthenticationFilter' defined in file [C:\Users\layar\Downloads\talent-registry\talent-registry\target\classes\com\zencube\registry\security\filter\JwtAuthenticationFilter.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'customUserDetailsService' defined in file [C:\Users\layar\Downloads\talent-registry\talent-registry\target\classes\com\zencube\registry\security\service\CustomUserDetailsService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepository' defined in com.zencube.registry.auth.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+2026-06-26T13:53:51.763+05:30  INFO 3860 --- [talent-registry] [           main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2026-06-26T13:53:51.767+05:30  WARN 3860 --- [talent-registry] [           main] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [TalentRegistryPool:housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:271)
+ java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1803)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1166)
+ java.base/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:883)
+ java.base/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1016)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1076)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+ java.base/java.lang.Thread.run(Thread.java:1516)
+2026-06-26T13:53:51.767+05:30  WARN 3860 --- [talent-registry] [           main] o.a.c.loader.WebappClassLoaderBase       : The web application [ROOT] appears to have started a thread named [TalentRegistryPool:connection-adder] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:271)
+ java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1803)
+ java.base/java.util.concurrent.LinkedBlockingQueue.poll(LinkedBlockingQueue.java:460)
+ java.base/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1015)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1076)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+ java.base/java.lang.Thread.run(Thread.java:1516)
+2026-06-26T13:53:51.771+05:30  WARN 3860 --- [talent-registry] [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server
+2026-06-26T13:53:51.771+05:30  INFO 3860 --- [talent-registry] [           main] com.zaxxer.hikari.HikariDataSource       : TalentRegistryPool - Shutdown initiated...
+2026-06-26T13:53:51.774+05:30  INFO 3860 --- [talent-registry] [           main] com.zaxxer.hikari.HikariDataSource       : TalentRegistryPool - Shutdown completed.
+2026-06-26T13:53:51.797+05:30  INFO 3860 --- [talent-registry] [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-06-26T13:53:51.834+05:30 ERROR 3860 --- [talent-registry] [           main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.context.ApplicationContextException: Unable to start web server
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:170) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:622) ~[spring-context-6.2.18.jar:6.2.18]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:318) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1361) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1350) ~[spring-boot-3.5.14.jar:3.5.14]
+	at com.zencube.registry.TalentRegistryApplication.main(TalentRegistryApplication.java:18) ~[classes/:na]
+Caused by: org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:147) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:107) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:517) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:219) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:193) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:167) ~[spring-boot-3.5.14.jar:3.5.14]
+	... 8 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'jwtAuthenticationFilter' defined in file [C:\Users\layar\Downloads\talent-registry\talent-registry\target\classes\com\zencube\registry\security\filter\JwtAuthenticationFilter.class]: Unsatisfied dependency expressed through constructor parameter 1: Error creating bean with name 'customUserDetailsService' defined in file [C:\Users\layar\Downloads\talent-registry\talent-registry\target\classes\com\zencube\registry\security\service\CustomUserDetailsService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepository' defined in com.zencube.registry.auth.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:207) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.getOrderedBeansOfType(ServletContextInitializerBeans.java:230) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:184) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAsRegistrationBean(ServletContextInitializerBeans.java:179) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.addAdaptableBeans(ServletContextInitializerBeans.java:164) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.springframework.boot.web.servlet.ServletContextInitializerBeans.<init>(ServletContextInitializerBeans.java:96) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.getServletContextInitializerBeans(ServletWebServerApplicationContext.java:271) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.selfInitialize(ServletWebServerApplicationContext.java:245) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.springframework.boot.web.embedded.tomcat.TomcatStarter.onStartup(TomcatStarter.java:52) ~[spring-boot-3.5.14.jar:3.5.14]
+	at org.apache.catalina.core.StandardContext.startInternal(StandardContext.java:4452) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1201) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1191) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:330) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:81) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:149) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:747) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardHost.startInternal(StandardHost.java:783) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1201) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.ContainerBase$StartChild.call(ContainerBase.java:1191) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:330) ~[na:na]
+	at org.apache.tomcat.util.threads.InlineExecutorService.execute(InlineExecutorService.java:81) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at java.base/java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:149) ~[na:na]
+	at org.apache.catalina.core.ContainerBase.startInternal(ContainerBase.java:747) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardEngine.startInternal(StandardEngine.java:201) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardService.startInternal(StandardService.java:410) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.core.StandardServer.startInternal(StandardServer.java:868) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:164) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.apache.catalina.startup.Tomcat.start(Tomcat.java:436) ~[tomcat-embed-core-10.1.54.jar:10.1.54]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:128) ~[spring-boot-3.5.14.jar:3.5.14]
+	... 13 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'customUserDetailsService' defined in file [C:\Users\layar\Downloads\talent-registry\talent-registry\target\classes\com\zencube\registry\security\service\CustomUserDetailsService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'userRepository' defined in com.zencube.registry.auth.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1395) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1232) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1770) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1653) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.2.18.jar:6.2.18]
+	... 54 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'userRepository' defined in com.zencube.registry.auth.repository.UserRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaSharedEM_entityManagerFactory' while setting bean property 'entityManager'
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1725) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1474) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:606) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1708) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1653) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791) ~[spring-beans-6.2.18.jar:6.2.18]
+	... 68 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaSharedEM_entityManagerFactory': Cannot resolve reference to bean 'entityManagerFactory' while setting constructor argument
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:377) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:135) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:691) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:513) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1375) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1205) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365) ~[spring-beans-6.2.18.jar:6.2.18]
+	... 81 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'flywayInitializer' defined in class path resource [org/springframework/boot/autoconfigure/flyway/FlywayAutoConfiguration$FlywayConfiguration.class]: Script V1__initial_schema.sql failed
+------------------------------------
+SQL State  : HY004
+Error Code : 50004
+Message    : Unknown data type: "TIMESTAMPTZ"; SQL statement:
+-- ---------------------------------------------------------------------------
+-- USERS
+-- ---------------------------------------------------------------------------
+
+CREATE TABLE users (
+    id            UUID        NOT NULL DEFAULT gen_random_uuid(),
+    email         VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(255),
+    first_name    VARCHAR(100),
+    last_name     VARCHAR(100),
+    phone         VARCHAR(20),
+    status        status      NOT NULL DEFAULT 'PENDING_VERIFICATION',
+    gender        gender,
+    avatar_url    VARCHAR(500),
+    tenant_id     UUID,                          -- future multi-tenancy hook
+    last_login_at TIMESTAMPTZ,
+    CONSTRAINT pk_users PRIMARY KEY (id),
+    CONSTRAINT uq_users_email UNIQUE (email)
+) [50004-232]
+Location   : db/migration/V1__initial_schema.sql (C:\Users\layar\Downloads\talent-registry\talent-registry\target\classes\db\migration\V1__initial_schema.sql)
+Line       : 73
+Statement  : Run Flyway with -X option to see the actual statement causing the problem
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1826) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:607) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:315) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:365) ~[spring-beans-6.2.18.jar:6.2.18]
+	... 93 common frames omitted
+Caused by: org.flywaydb.core.internal.exception.FlywayMigrateException: Script V1__initial_schema.sql failed
+------------------------------------
+SQL State  : HY004
+Error Code : 50004
+Message    : Unknown data type: "TIMESTAMPTZ"; SQL statement:
+-- ---------------------------------------------------------------------------
+-- USERS
+-- ---------------------------------------------------------------------------
+
+CREATE TABLE users (
+    id            UUID        NOT NULL DEFAULT gen_random_uuid(),
+    email         VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(255),
+    first_name    VARCHAR(100),
+    last_name     VARCHAR(100),
+    phone         VARCHAR(20),
+    status        status      NOT NULL DEFAULT 'PENDING_VERIFICATION',
+    gender        gender,
+    avatar_url    VARCHAR(500),
+    tenant_id     UUID,                          -- future multi-tenancy hook
+    last_login_at TIMESTAMPTZ,
+    CONSTRAINT pk_users PRIMARY KEY (id),
+    CONSTRAINT uq_users_email UNIQUE (email)
+) [50004-232]
+Location   : db/migration/V1__initial_schema.sql (C:\Users\layar\Downloads\talent-registry\talent-registry\target\classes\db\migration\V1__initial_schema.sql)
+Line       : 73
+Statement  : Run Flyway with -X option to see the actual statement causing the problem
+
+	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:399) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.lambda$applyMigrations$1(DbMigrate.java:283) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:59) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.applyMigrations(DbMigrate.java:282) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.migrateGroup(DbMigrate.java:255) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.lambda$migrateAll$0(DbMigrate.java:153) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.jdbc.TableLockingExecutionTemplate$1.call(TableLockingExecutionTemplate.java:40) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.jdbc.TransactionalExecutionTemplate.execute(TransactionalExecutionTemplate.java:59) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.jdbc.TableLockingExecutionTemplate.execute(TableLockingExecutionTemplate.java:35) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.database.base.Connection.lock(Connection.java:106) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory.lock(JdbcTableSchemaHistory.java:164) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.migrateAll(DbMigrate.java:153) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.migrate(DbMigrate.java:104) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.Flyway.lambda$migrate$1(Flyway.java:247) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.FlywayExecutor.execute(FlywayExecutor.java:210) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.Flyway.migrate(Flyway.java:188) ~[flyway-core-11.7.2.jar:na]
+	at org.springframework.boot.autoconfigure.flyway.FlywayMigrationInitializer.afterPropertiesSet(FlywayMigrationInitializer.java:66) ~[spring-boot-autoconfigure-3.5.14.jar:3.5.14]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1873) ~[spring-beans-6.2.18.jar:6.2.18]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1822) ~[spring-beans-6.2.18.jar:6.2.18]
+	... 102 common frames omitted
+Caused by: org.flywaydb.core.internal.sqlscript.FlywaySqlScriptException: Script V1__initial_schema.sql failed
+------------------------------------
+SQL State  : HY004
+Error Code : 50004
+Message    : Unknown data type: "TIMESTAMPTZ"; SQL statement:
+-- ---------------------------------------------------------------------------
+-- USERS
+-- ---------------------------------------------------------------------------
+
+CREATE TABLE users (
+    id            UUID        NOT NULL DEFAULT gen_random_uuid(),
+    email         VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(255),
+    first_name    VARCHAR(100),
+    last_name     VARCHAR(100),
+    phone         VARCHAR(20),
+    status        status      NOT NULL DEFAULT 'PENDING_VERIFICATION',
+    gender        gender,
+    avatar_url    VARCHAR(500),
+    tenant_id     UUID,                          -- future multi-tenancy hook
+    last_login_at TIMESTAMPTZ,
+    CONSTRAINT pk_users PRIMARY KEY (id),
+    CONSTRAINT uq_users_email UNIQUE (email)
+) [50004-232]
+Location   : db/migration/V1__initial_schema.sql (C:\Users\layar\Downloads\talent-registry\talent-registry\target\classes\db\migration\V1__initial_schema.sql)
+Line       : 73
+Statement  : Run Flyway with -X option to see the actual statement causing the problem
+
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.handleException(DefaultSqlScriptExecutor.java:256) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:217) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.execute(DefaultSqlScriptExecutor.java:137) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.executeOnce(SqlMigrationExecutor.java:75) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.lambda$execute$0(SqlMigrationExecutor.java:66) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.database.DefaultExecutionStrategy.execute(DefaultExecutionStrategy.java:31) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.resolver.sql.SqlMigrationExecutor.execute(SqlMigrationExecutor.java:65) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.command.DbMigrate.doMigrateGroup(DbMigrate.java:391) ~[flyway-core-11.7.2.jar:na]
+	... 120 common frames omitted
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Unknown data type: "TIMESTAMPTZ"; SQL statement:
+-- ---------------------------------------------------------------------------
+-- USERS
+-- ---------------------------------------------------------------------------
+
+CREATE TABLE users (
+    id            UUID        NOT NULL DEFAULT gen_random_uuid(),
+    email         VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(255),
+    first_name    VARCHAR(100),
+    last_name     VARCHAR(100),
+    phone         VARCHAR(20),
+    status        status      NOT NULL DEFAULT 'PENDING_VERIFICATION',
+    gender        gender,
+    avatar_url    VARCHAR(500),
+    tenant_id     UUID,                          -- future multi-tenancy hook
+    last_login_at TIMESTAMPTZ,
+    CONSTRAINT pk_users PRIMARY KEY (id),
+    CONSTRAINT uq_users_email UNIQUE (email)
+) [50004-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:566) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.message.DbException.get(DbException.java:223) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.message.DbException.get(DbException.java:199) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.command.Parser.readIfDataType1(Parser.java:5860) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.command.Parser.readIfDataType(Parser.java:5698) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.command.Parser.parseColumnWithType(Parser.java:5680) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.command.Parser.parseColumnForTable(Parser.java:5559) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.command.Parser.parseTableColumnDefinition(Parser.java:8876) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.command.Parser.parseCreateTable(Parser.java:8819) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.command.Parser.parseCreate(Parser.java:6398) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.command.Parser.parsePrepared(Parser.java:645) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.command.Parser.parse(Parser.java:581) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.command.Parser.parse(Parser.java:556) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.command.Parser.prepareCommand(Parser.java:484) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:645) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:561) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1164) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231) ~[h2-2.3.232.jar:2.3.232]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:95) ~[HikariCP-6.3.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-6.3.3.jar:na]
+	at org.flywaydb.core.internal.jdbc.JdbcTemplate.executeStatement(JdbcTemplate.java:215) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.sqlscript.ParsedSqlStatement.execute(ParsedSqlStatement.java:88) ~[flyway-core-11.7.2.jar:na]
+	at org.flywaydb.core.internal.sqlscript.DefaultSqlScriptExecutor.executeStatement(DefaultSqlScriptExecutor.java:212) ~[flyway-core-11.7.2.jar:na]
+	... 126 common frames omitted
+
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:00 min
+[INFO] Finished at: 2026-06-26T13:53:51+05:30
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.5.14:run (default-cli) on project talent-registry: Process terminated with exit code: 1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException

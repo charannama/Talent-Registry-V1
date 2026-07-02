@@ -1,4 +1,4 @@
--- V59__create_job_openings.sql
+﻿-- V59__create_job_openings.sql
 -- Create job openings table and seed permissions
 
 CREATE TABLE job_openings (
@@ -14,19 +14,19 @@ CREATE TABLE job_openings (
     salary_max NUMERIC(19, 2),
     work_mode VARCHAR(50),
     positions INTEGER,
-    application_deadline TIMESTAMPTZ,
+    application_deadline TIMESTAMP WITH TIME ZONE,
     status VARCHAR(50) NOT NULL DEFAULT 'DRAFT',
     required_skills VARCHAR(1000),
     graduation_years VARCHAR(255),
     
     -- BaseEntity audit columns
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
     created_by VARCHAR(255),
     updated_by VARCHAR(255),
     version BIGINT NOT NULL DEFAULT 0,
     is_deleted BOOLEAN NOT NULL DEFAULT FALSE,
-    deleted_at TIMESTAMPTZ,
+    deleted_at TIMESTAMP WITH TIME ZONE,
     deleted_by VARCHAR(255),
 
     CONSTRAINT pk_job_openings PRIMARY KEY (id),
@@ -34,16 +34,16 @@ CREATE TABLE job_openings (
 );
 
 -- Indexes for performance
-CREATE INDEX idx_job_openings_enterprise_id ON job_openings(enterprise_id) WHERE is_deleted = FALSE;
-CREATE INDEX idx_job_openings_status ON job_openings(status) WHERE is_deleted = FALSE;
+CREATE INDEX idx_job_openings_enterprise_id ON job_openings(enterprise_id) ;
+CREATE INDEX idx_job_openings_status ON job_openings(status) ;
 
 -- Unique constraint ensuring an enterprise cannot have duplicate active opening titles
-CREATE UNIQUE INDEX uq_enterprise_opening_title_active ON job_openings(enterprise_id, title) WHERE is_deleted = FALSE;
+CREATE UNIQUE INDEX uq_enterprise_opening_title_active ON job_openings(enterprise_id, title) ;
 
 -- Seed permission
 INSERT INTO permissions (id, name, code, description, created_at, updated_at, version, is_deleted)
 VALUES (gen_random_uuid(), 'Create Job Opening', 'OPENING_CREATE', 'Allows creation of job openings', NOW(), NOW(), 0, FALSE)
-ON CONFLICT (code) DO NOTHING;
+;
 
 -- Map permission to roles: ENTERPRISE_RECRUITER, HR_STAFF, Platform Admin (ADMIN)
 -- Map to ENTERPRISE_RECRUITER

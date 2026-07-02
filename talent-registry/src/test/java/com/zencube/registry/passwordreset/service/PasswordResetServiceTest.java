@@ -1,6 +1,5 @@
 package com.zencube.registry.passwordreset.service;
 
-import com.zencube.registry.auth.email.EmailService;
 import com.zencube.registry.auth.entity.User;
 import com.zencube.registry.auth.repository.UserRepository;
 import com.zencube.registry.common.exception.InvalidTokenException;
@@ -37,7 +36,7 @@ class PasswordResetServiceTest {
     private PasswordResetTokenRepository passwordResetTokenRepository;
 
     @Mock
-    private EmailService emailService;
+    private com.zencube.registry.scheduler.service.TaskSchedulerService taskSchedulerService;
 
     @Mock
     private PasswordEncoder passwordEncoder;
@@ -54,10 +53,12 @@ class PasswordResetServiceTest {
     void setUp() {
         savedUser = User.builder()
                 .email("test@example.com")
+                .firstName("John")
                 .passwordHash("old_hash")
                 .failedLoginAttempts(3)
                 .lockoutUntil(Instant.now().plus(1, ChronoUnit.HOURS))
                 .build();
+        savedUser.setId(java.util.UUID.randomUUID());
     }
 
     @Test
@@ -68,7 +69,7 @@ class PasswordResetServiceTest {
         passwordResetService.requestReset("test@example.com");
 
         verify(passwordResetTokenRepository).save(any(PasswordResetToken.class));
-        verify(emailService).sendPasswordResetEmail(eq("test@example.com"), anyString());
+        verify(taskSchedulerService).enqueueTask(any());
     }
 
     @Test
@@ -79,7 +80,7 @@ class PasswordResetServiceTest {
         passwordResetService.requestReset("unknown@example.com");
 
         verify(passwordResetTokenRepository, never()).save(any());
-        verify(emailService, never()).sendPasswordResetEmail(anyString(), anyString());
+        verify(taskSchedulerService, never()).enqueueTask(any());
     }
 
     @Test

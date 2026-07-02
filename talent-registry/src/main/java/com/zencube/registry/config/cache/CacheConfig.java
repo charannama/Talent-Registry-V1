@@ -5,6 +5,7 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
@@ -16,6 +17,7 @@ public class CacheConfig {
     private final ConcurrentMapCacheManager concurrentMapCacheManager =
             new ConcurrentMapCacheManager("dashboardMetrics");
 
+    @Primary
     @Bean
     public CacheManager cacheManager() {
         return concurrentMapCacheManager;

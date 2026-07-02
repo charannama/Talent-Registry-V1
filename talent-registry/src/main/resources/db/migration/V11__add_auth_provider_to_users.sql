@@ -1,4 +1,4 @@
-ALTER TABLE public.users
+﻿ALTER TABLE public.users
 ADD COLUMN auth_provider VARCHAR(20) NOT NULL DEFAULT 'LOCAL';
 
 ALTER TABLE public.users

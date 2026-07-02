@@ -26,6 +26,9 @@ public class TalentProfileResponse {
     private Boolean internshipReady;
     private Boolean remotePreference;
     private EligibilityLevel eligibilityLevel;
+    private Boolean profileVisible;
+    private Boolean suspended;
+    private String suspensionReason;
     
     private List<SkillResponse> skills;
     private List<ProjectResponse> projects;

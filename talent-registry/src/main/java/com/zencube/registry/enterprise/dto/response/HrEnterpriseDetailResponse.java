@@ -87,8 +87,11 @@ public class HrEnterpriseDetailResponse {
     @Schema(description = "Is the account fully active")
     private Boolean accountActive;
 
-    @Schema(description = "ID of the HR User who approved this")
+    @Schema(description = "ID of the HR User who onboarded this")
     private UUID onboardedBy;
+
+    @Schema(description = "ID of the HR User who approved this")
+    private UUID approvedBy;
 
     @Schema(description = "Timestamp of approval")
     private Instant approvedAt;

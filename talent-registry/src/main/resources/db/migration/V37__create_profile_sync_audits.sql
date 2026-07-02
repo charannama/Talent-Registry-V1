@@ -1,4 +1,4 @@
--- V37__create_profile_sync_audits.sql
+﻿-- V37__create_profile_sync_audits.sql
 
 CREATE TABLE profile_sync_audits
 (

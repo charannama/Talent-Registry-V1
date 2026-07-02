@@ -48,4 +48,13 @@ public interface OpeningRepository extends JpaRepository<Opening, UUID>, JpaSpec
     boolean existsByIdAndEnterpriseIdAndDeletedFalse(UUID id, UUID enterpriseId);
 
     List<Opening> findByStatusAndPublishedAtIsNotNullAndDeletedFalse(OpeningStatus status);
+
+    List<Opening> findByFeaturedTrueAndDeletedFalse();
+
+    List<Opening> findByWorkModeAndDeletedFalse(com.zencube.registry.opening.enums.WorkMode workMode);
+
+    List<Opening> findByGraduationYearFilterAndDeletedFalse(Integer year);
+
+    @org.springframework.data.jpa.repository.Query("SELECT o FROM Opening o WHERE o.salaryRangeMin >= :min AND o.salaryRangeMax <= :max AND o.deleted = false")
+    List<Opening> findBySalaryRange(@org.springframework.data.repository.query.Param("min") java.math.BigDecimal min, @org.springframework.data.repository.query.Param("max") java.math.BigDecimal max);
 }

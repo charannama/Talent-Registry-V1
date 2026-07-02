@@ -29,7 +29,7 @@ public class WorkExperienceController {
     }
 
     @GetMapping("/user/{userId}/experiences")
-    @PreAuthorize("hasAnyRole('HR','ADMIN')")
+    @PreAuthorize("hasAnyRole('HR_STAFF','ADMIN')")
     public ResponseEntity<ApiResponse<List<WorkExperienceResponse>>> getUserExperiences(@PathVariable UUID userId) {
         List<WorkExperienceResponse> experiences = workExperienceService.getExperiencesByUserId(userId);
         return ResponseEntity.ok(ApiResponse.success("Work experiences retrieved successfully", experiences));

@@ -38,6 +38,15 @@ class AdminControllerTest {
     @MockBean
     private org.springframework.security.core.userdetails.UserDetailsService userDetailsService;
 
+    @MockBean
+    private com.zencube.registry.config.service.ConfigService configService;
+
+    @MockBean
+    private com.zencube.registry.featureflag.service.FeatureFlagService featureFlagService;
+
+    @MockBean
+    private com.zencube.registry.journal.service.AuditQueryService auditQueryService;
+
     @Test
     @WithMockUser(roles = "ADMIN")
     void unlockUser_ReturnsOk() throws Exception {

@@ -1,4 +1,4 @@
--- V70__create_missing_application_tables.sql
+﻿-- V70__create_missing_application_tables.sql
 -- Aligns existing tables with JPA entities and creates new tables.
 
 -- ============================================================================
@@ -9,7 +9,7 @@
 ALTER TABLE attachments RENAME COLUMN type TO attachment_type;
 
 ALTER TABLE attachments
-    ALTER COLUMN attachment_type TYPE VARCHAR(50) USING attachment_type::text;
+    ALTER COLUMN attachment_type TYPE VARCHAR(50);
 
 ALTER TABLE attachments
     ADD COLUMN IF NOT EXISTS profile_id UUID;
@@ -22,10 +22,10 @@ ALTER TABLE attachments
 -- ============================================================================
 
 ALTER TABLE applications
-    ADD COLUMN IF NOT EXISTS applied_at TIMESTAMPTZ,
-    ADD COLUMN IF NOT EXISTS forwarded_at TIMESTAMPTZ,
-    ADD COLUMN IF NOT EXISTS last_stage_updated_at TIMESTAMPTZ,
-    ADD COLUMN IF NOT EXISTS resume_attachment_id UUID;
+    ADD COLUMN IF NOT EXISTS applied_at TIMESTAMP WITH TIME ZONE;
+ALTER TABLE applications ADD COLUMN IF NOT EXISTS forwarded_at TIMESTAMP WITH TIME ZONE;
+ALTER TABLE applications ADD COLUMN IF NOT EXISTS last_stage_updated_at TIMESTAMP WITH TIME ZONE;
+ALTER TABLE applications ADD COLUMN IF NOT EXISTS resume_attachment_id UUID;
 
 ALTER TABLE applications
     ADD CONSTRAINT fk_applications_resume FOREIGN KEY (resume_attachment_id) REFERENCES attachments(id);
@@ -35,20 +35,20 @@ ALTER TABLE applications
 -- ============================================================================
 
 CREATE TABLE application_status_history (
-    id                  UUID        PRIMARY KEY DEFAULT gen_random_uuid(),
-    created_at          TIMESTAMPTZ NOT NULL DEFAULT now(),
-    updated_at          TIMESTAMPTZ NOT NULL DEFAULT now(),
+    id                  UUID        DEFAULT gen_random_uuid() PRIMARY KEY,
+    created_at          TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
+    updated_at          TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
     created_by          VARCHAR(255),
     updated_by          VARCHAR(255),
     version             BIGINT      NOT NULL DEFAULT 0,
     is_deleted          BOOLEAN     NOT NULL DEFAULT FALSE,
-    deleted_at          TIMESTAMPTZ,
+    deleted_at          TIMESTAMP WITH TIME ZONE,
     deleted_by          VARCHAR(255),
 
     application_id      UUID        NOT NULL,
     status              VARCHAR(50) NOT NULL,
     changed_by_user_id  UUID,
-    changed_at          TIMESTAMPTZ NOT NULL,
+    changed_at          TIMESTAMP WITH TIME ZONE NOT NULL,
     notes               TEXT,
 
     CONSTRAINT fk_ash_application FOREIGN KEY (application_id) REFERENCES applications(id),

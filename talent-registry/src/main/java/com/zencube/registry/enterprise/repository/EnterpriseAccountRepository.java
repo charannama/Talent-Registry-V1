@@ -35,4 +35,12 @@ public interface EnterpriseAccountRepository extends JpaRepository<EnterpriseAcc
 
     @org.springframework.data.jpa.repository.Query(value = "SELECT AVG(EXTRACT(EPOCH FROM (approved_at - created_at))) FROM enterprise_accounts WHERE onboarding_status = 'APPROVED' AND approved_at IS NOT NULL AND created_at IS NOT NULL", nativeQuery = true)
     Double findAverageApprovalTimeInSeconds();
+
+    List<EnterpriseAccount> findByApprovedBy(UUID hrId);
+
+    @org.springframework.data.jpa.repository.Query("SELECT e FROM EnterpriseAccount e WHERE e.onboardingStatus = 'APPROVED'")
+    List<EnterpriseAccount> findApprovedEnterprises();
+
+    @org.springframework.data.jpa.repository.Query("SELECT e FROM EnterpriseAccount e WHERE e.onboardingStatus = 'REJECTED'")
+    List<EnterpriseAccount> findRejectedEnterprises();
 }

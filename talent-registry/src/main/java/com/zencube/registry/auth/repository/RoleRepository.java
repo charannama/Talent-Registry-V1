@@ -15,5 +15,7 @@ public interface RoleRepository extends JpaRepository<Role, UUID> {
     Optional<Role> findByNameIgnoreCaseAndDeletedFalse(String name);
     boolean existsByNameIgnoreCaseAndDeletedFalse(String name);
     
+    Optional<Role> findByRoleTypeAndDeletedFalse(com.zencube.registry.common.enums.RoleType roleType);
+    
     java.util.List<Role> findByDeletedFalse();
 }

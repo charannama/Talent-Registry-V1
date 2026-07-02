@@ -1,4 +1,4 @@
--- V31__create_student_profiles.sql
+﻿-- V31__create_student_profiles.sql
 
 CREATE TABLE student_profiles (
     id UUID PRIMARY KEY,
@@ -17,11 +17,11 @@ CREATE TABLE student_profiles (
     internship_ready BOOLEAN DEFAULT FALSE,
     remote_preference BOOLEAN DEFAULT FALSE,
     eligibility_level VARCHAR(50) NOT NULL DEFAULT 'NO_PROJECT',
-    last_sync_at TIMESTAMPTZ,
+    last_sync_at TIMESTAMP WITH TIME ZONE,
     sync_status VARCHAR(50) NOT NULL DEFAULT 'NEVER_SYNCED',
     sync_error TEXT,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
     created_by UUID,
     updated_by UUID
 );

@@ -1,4 +1,4 @@
--- Migration V49: Add suspended_by to enterprise_accounts
+﻿-- Migration V49: Add suspended_by to enterprise_accounts
 
 ALTER TABLE enterprise_accounts
 ADD COLUMN suspended_by UUID;

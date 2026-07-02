@@ -65,7 +65,15 @@ public class SecurityConfig {
             "/v3/api-docs",
             "/v3/api-docs.yaml",
             "/webjars/**",
-            "/api/v1/auth/**",
+            "/api/v1/auth/register",
+            "/api/v1/auth/register/hr",
+            "/api/v1/auth/register/enterprise",
+            "/api/v1/auth/login",
+            "/api/v1/auth/refresh",
+            "/api/v1/auth/verify-email",
+            "/api/v1/auth/resend-verification",
+            "/api/v1/auth/password/reset-request",
+            "/api/v1/auth/password/reset",
             "/api/v1/enterprises/signup"
     };
 
@@ -82,10 +90,11 @@ public class SecurityConfig {
             )
             .authorizeHttpRequests(auth -> auth
                     .requestMatchers(PUBLIC_PATHS).permitAll()
+                    .requestMatchers("/api/v1/audit/**").hasRole("ADMIN")
                     .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
                     .requestMatchers("/api/v1/profile/user/**").hasAuthority("PROFILE_VIEW_ALL")
-                    .requestMatchers("/api/v1/talent/**").hasAnyRole("ENTERPRISE", "HR", "ADMIN")
-                    .requestMatchers("/api/v1/hr/enterprises/**").hasAnyRole("ENTERPRISE_MANAGE", "HR_ADMIN", "ADMIN")
+                    .requestMatchers("/api/v1/talent/**").hasAnyRole("ENTERPRISE_RECRUITER", "HR_STAFF", "ADMIN")
+                    .requestMatchers("/api/v1/hr/enterprises/**").hasAnyRole("ENTERPRISE_ADMIN", "HR_STAFF", "ADMIN")
                     .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/v1/enterprises/my/status").hasAnyRole("ENTERPRISE_RECRUITER", "ENTERPRISE")
                     .requestMatchers(org.springframework.http.HttpMethod.PUT, "/api/v1/enterprises/my").hasRole("ENTERPRISE_RECRUITER")
                     .requestMatchers(org.springframework.http.HttpMethod.POST, "/api/v1/openings").hasAuthority("OPENING_CREATE")
@@ -104,6 +113,12 @@ public class SecurityConfig {
                     .requestMatchers(org.springframework.http.HttpMethod.POST, "/api/v1/auth/reset-password").permitAll()
                     .requestMatchers(org.springframework.http.HttpMethod.GET, "/api/v1/openings").permitAll()
                     .requestMatchers("/api/v1/enterprises/**").authenticated()
+                    .requestMatchers("/api/v1/attachments/**").authenticated()
+                    .requestMatchers("/api/v1/comments/**").authenticated()
+                    .requestMatchers("/api/v1/activities/**").authenticated()
+                    .requestMatchers("/api/v1/tags/**").authenticated()
+                    .requestMatchers("/api/v1/admin/**").hasRole("ADMIN")
+                    .requestMatchers("/api/v1/notifications/**").authenticated()
                     .anyRequest().authenticated()
             )
             .authenticationProvider(authenticationProvider())

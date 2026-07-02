@@ -20,6 +20,7 @@ public class ApplicationMapper {
                 .openingTitle(application.getOpening() != null ? application.getOpening().getTitle() : null)
                 .appliedAt(application.getAppliedAt() != null ? application.getAppliedAt() : application.getCreatedAt())
                 .status(application.getStatus())
+                .currentHandlerId(application.getCurrentHandlerId())
                 .build();
     }
 
@@ -31,8 +32,8 @@ public class ApplicationMapper {
         String resumeUrl = null;
         String resumeFileName = null;
         if (application.getResume() != null) {
-            resumeUrl = application.getResume().getFileUrl();
-            resumeFileName = application.getResume().getFileName();
+            resumeUrl = application.getResume().getStoragePath();
+            resumeFileName = application.getResume().getFilename();
         }
 
         return com.zencube.registry.application.dto.response.EnterpriseApplicationResponse.builder()
@@ -48,6 +49,7 @@ public class ApplicationMapper {
                 .lastStageUpdatedAt(application.getLastStageUpdatedAt() != null ? application.getLastStageUpdatedAt() : application.getUpdatedAt())
                 .resumeUrl(resumeUrl)
                 .resumeFileName(resumeFileName)
+                .currentHandlerId(application.getCurrentHandlerId())
                 .build();
     }
 }

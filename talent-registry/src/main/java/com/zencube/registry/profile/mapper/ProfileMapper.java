@@ -27,6 +27,9 @@ public class ProfileMapper {
                 .portfolioUrl(profile.getPortfolioUrl())
                 .eligibilityLevel(profile.getEligibilityLevel())
                 .lastSyncAt(profile.getLastSyncAt())
+                .profileVisible(profile.getProfileVisible())
+                .suspended(profile.getSuspended())
+                .suspensionReason(profile.getSuspensionReason())
                 .build();
     }
 }

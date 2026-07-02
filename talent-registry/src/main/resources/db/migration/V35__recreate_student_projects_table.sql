@@ -1,4 +1,4 @@
--- V35__recreate_student_projects_table.sql
+﻿-- V35__recreate_student_projects_table.sql
 
 DROP TABLE IF EXISTS student_projects;
 

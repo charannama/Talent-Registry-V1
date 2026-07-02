@@ -26,4 +26,5 @@ public class EnterpriseApplicationResponse {
     private Instant lastStageUpdatedAt;
     private String resumeUrl;
     private String resumeFileName;
+    private UUID currentHandlerId;
 }

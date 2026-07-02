@@ -1,4 +1,4 @@
--- V58__add_enterprise_analytics_indexes.sql
+﻿-- V58__add_enterprise_analytics_indexes.sql
 -- Add composite index for rapid status and date range filtering
 CREATE INDEX idx_enterprise_status_created_at ON enterprise_accounts(onboarding_status, created_at);
 

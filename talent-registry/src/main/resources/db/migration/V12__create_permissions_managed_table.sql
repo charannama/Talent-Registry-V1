@@ -30,13 +30,13 @@ ALTER TABLE permissions
 --         This is a best-effort migration; duplicate codes get a suffix.
 -- ---------------------------------------------------------------------------
 UPDATE permissions
-SET    code = UPPER(REGEXP_REPLACE(name, '[\s\-/:]+', '_', 'g'))
+SET    code = UPPER(REGEXP_REPLACE(name, '[\s\-/:]+', '_'))
 WHERE  code IS NULL;
 
 -- ---------------------------------------------------------------------------
 -- Step 3: Make 'code' NOT NULL and add a unique constraint.
 --         If the back-fill above produced duplicate codes, the unique constraint
---         will fail — in that case, manually fix the data before running.
+--         will fail â€” in that case, manually fix the data before running.
 -- ---------------------------------------------------------------------------
 ALTER TABLE permissions
     ALTER COLUMN code SET NOT NULL;
@@ -45,40 +45,25 @@ ALTER TABLE permissions
     ADD CONSTRAINT uq_permissions_code UNIQUE (code);
 
 -- ---------------------------------------------------------------------------
--- Step 4: Ensure unique constraint on 'name' exists (V3 already added this,
---         but we declare it idempotently for safety).
--- ---------------------------------------------------------------------------
-DO $$
-BEGIN
-    IF NOT EXISTS (
-        SELECT 1 FROM pg_constraint
-        WHERE conname = 'uq_permissions_name'
-          AND conrelid = 'permissions'::regclass
-    ) THEN
-        ALTER TABLE permissions
-            ADD CONSTRAINT uq_permissions_name UNIQUE (name);
-    END IF;
-END
-$$;
+
 
 -- ---------------------------------------------------------------------------
 -- Step 5: Drop legacy columns from V3 that are no longer used by the entity.
 --         Skipped if they have already been removed.
 -- ---------------------------------------------------------------------------
-ALTER TABLE permissions
-    DROP COLUMN IF EXISTS resource,
-    DROP COLUMN IF EXISTS action;
+ALTER TABLE permissions DROP COLUMN IF EXISTS resource;
+ALTER TABLE permissions DROP COLUMN IF EXISTS action;
 
 -- ---------------------------------------------------------------------------
 -- Step 6: Partial index on 'code' for fast active-permission look-ups.
 -- ---------------------------------------------------------------------------
 CREATE INDEX IF NOT EXISTS idx_permissions_code_not_deleted
     ON permissions (code)
-    WHERE is_deleted = FALSE;
+    ;
 
 -- ---------------------------------------------------------------------------
 -- Step 7: Partial index on 'name' for fast active-permission look-ups.
 -- ---------------------------------------------------------------------------
 CREATE INDEX IF NOT EXISTS idx_permissions_name_not_deleted
     ON permissions (name)
-    WHERE is_deleted = FALSE;
+    ;

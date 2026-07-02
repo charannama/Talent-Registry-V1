@@ -118,6 +118,9 @@ public class TalentServiceImpl implements TalentService {
                 .internshipReady(profile.getInternshipReady())
                 .remotePreference(profile.getRemotePreference())
                 .eligibilityLevel(profile.getEligibilityLevel())
+                .profileVisible(profile.getProfileVisible())
+                .suspended(profile.getSuspended())
+                .suspensionReason(profile.getSuspensionReason())
                 .skills(skillRepository.findByProfileId(profile.getId()).stream()
                         .map(skillMapper::toResponse).toList())
                 .projects(projectRepository.findByProfileUserId(profile.getUser().getId()).stream()
@@ -129,7 +132,7 @@ public class TalentServiceImpl implements TalentService {
 
     @Override
     @Transactional
-    public void suspendProfile(UUID profileId, String reason, String suspendedBy) {
+    public void suspendProfile(UUID profileId, String reason, UUID suspendedBy) {
         StudentProfile profile = profileRepository.findById(profileId)
                 .orElseThrow(() -> new ResourceNotFoundException("Profile not found"));
 

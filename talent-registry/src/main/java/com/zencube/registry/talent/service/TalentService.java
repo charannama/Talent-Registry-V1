@@ -14,7 +14,7 @@ public interface TalentService {
 
     TalentProfileResponse getProfile(UUID profileId, HttpServletRequest request);
 
-    void suspendProfile(UUID profileId, String reason, String suspendedBy);
+    void suspendProfile(UUID profileId, String reason, UUID suspendedBy);
 
     void reinstateProfile(UUID profileId);
 }

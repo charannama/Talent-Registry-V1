@@ -1,4 +1,4 @@
--- V36__recreate_work_experiences_table.sql
+﻿-- V36__recreate_work_experiences_table.sql
 
 DROP TABLE IF EXISTS student_experiences;
 

@@ -161,7 +161,7 @@ public class OpeningServiceImpl implements OpeningService {
         log.info("HR is approving opening ID: {}", openingId);
         
         // 1. Get authenticated HR user
-        User hrUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User hrUser = ((com.zencube.registry.security.model.CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
 
         // 2 & 3. Load opening & verify exists
         Opening opening = openingRepository.findByIdAndDeletedFalse(openingId)
@@ -208,6 +208,10 @@ public class OpeningServiceImpl implements OpeningService {
         opening.setWorkMode(request.getWorkMode());
         opening.setPositions(request.getPositions());
         opening.setApplicationDeadline(request.getDeadline());
+        opening.setGraduationYearFilter(request.getGraduationYearFilter());
+        opening.setSalaryRangeMin(request.getSalaryRangeMin());
+        opening.setSalaryRangeMax(request.getSalaryRangeMax());
+        opening.setFeatured(request.getFeatured() != null ? request.getFeatured() : false);
 
         if (request.getRequiredSkills() != null && !request.getRequiredSkills().isEmpty()) {
             opening.setRequiredSkills(String.join(",", request.getRequiredSkills()));
@@ -229,7 +233,7 @@ public class OpeningServiceImpl implements OpeningService {
     @Transactional
     public OpeningResponse rejectOpening(UUID id, RejectionRequest request) {
         log.info("Rejecting opening ID: {}", id);
-        User hrUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User hrUser = ((com.zencube.registry.security.model.CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
         Opening opening = openingRepository.findByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Opening", "id", id));
         
@@ -242,7 +246,7 @@ public class OpeningServiceImpl implements OpeningService {
     @Transactional
     public OpeningResponse requestRevision(UUID id, com.zencube.registry.opening.dto.request.RequestRevisionRequest request) {
         log.info("HR is requesting revision for opening ID: {}", id);
-        User hrUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User hrUser = ((com.zencube.registry.security.model.CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
         Opening opening = openingRepository.findByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Opening", "id", id));
 
@@ -255,7 +259,7 @@ public class OpeningServiceImpl implements OpeningService {
     @Transactional
     public com.zencube.registry.opening.dto.response.ResubmitOpeningResponse resubmitOpening(UUID id) {
         log.info("Enterprise is resubmitting opening ID: {}", id);
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = ((com.zencube.registry.security.model.CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
         Opening opening = openingRepository.findByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Opening", "id", id));
 
@@ -284,7 +288,7 @@ public class OpeningServiceImpl implements OpeningService {
     @Transactional
     public com.zencube.registry.opening.dto.response.CloseOpeningResponse closeOpening(UUID id, com.zencube.registry.opening.dto.request.CloseOpeningRequest request) {
         log.info("Closing opening ID: {}", id);
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = ((com.zencube.registry.security.model.CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
         Opening opening = openingRepository.findByIdAndDeletedFalse(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Opening", "id", id));
 
@@ -344,7 +348,7 @@ public class OpeningServiceImpl implements OpeningService {
 
     @Override
     public PaginatedOpeningResponse listMyEnterpriseOpenings(Pageable pageable) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = ((com.zencube.registry.security.model.CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
         EnterpriseAccount enterprise = enterpriseRepository.findByUserId(user.getId())
                 .orElseThrow(() -> new BusinessException("Enterprise account not found for current user", HttpStatus.NOT_FOUND, "ENTERPRISE_NOT_FOUND"));
         
@@ -412,7 +416,7 @@ public class OpeningServiceImpl implements OpeningService {
         org.springframework.data.jpa.domain.Specification<Opening> spec;
         
         if (Boolean.TRUE.equals(criteria.getEligibleOnly())) {
-            User studentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            User studentUser = ((com.zencube.registry.security.model.CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUser();
             com.zencube.registry.eligibility.dto.StudentEligibilityResponse eligibility = eligibilityService.getStudentEligibility(studentUser.getId());
             spec = com.zencube.registry.opening.specification.OpeningSpecification.search(criteria, eligibility, eligibility.getProfileId());
         } else {

@@ -11,4 +11,6 @@ import java.util.UUID;
 @Repository
 public interface StudentProfileRepository extends JpaRepository<StudentProfile, UUID>, JpaSpecificationExecutor<StudentProfile> {
     Optional<StudentProfile> findByUserId(UUID userId);
+    java.util.List<StudentProfile> findByProfileVisible(Boolean visible);
+    java.util.List<StudentProfile> findBySuspended(Boolean suspended);
 }

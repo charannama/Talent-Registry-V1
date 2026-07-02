@@ -37,6 +37,9 @@ public class EnterpriseSecurity {
         if (authentication == null || !authentication.isAuthenticated() || authentication.getPrincipal() == null) {
             return null;
         }
+        if (authentication.getPrincipal() instanceof com.zencube.registry.security.model.CustomUserDetails) {
+            return ((com.zencube.registry.security.model.CustomUserDetails) authentication.getPrincipal()).getUser();
+        }
         if (authentication.getPrincipal() instanceof User) {
             return (User) authentication.getPrincipal();
         }

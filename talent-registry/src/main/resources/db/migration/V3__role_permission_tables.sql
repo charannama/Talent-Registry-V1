@@ -13,11 +13,14 @@ CREATE TYPE role_type AS ENUM (
     'SUPER_ADMIN',
     'ADMIN',
     'ENTERPRISE_ADMIN',
+    'ENTERPRISE_RECRUITER',
     'RECRUITER',
     'HIRING_MANAGER',
     'STUDENT',
     'VIEWER',
-    'SERVICE_ACCOUNT'
+    'SERVICE_ACCOUNT',
+    'HR_STAFF',
+    'CUSTOM'
 );
 
 -- ---------------------------------------------------------------------------
@@ -49,7 +52,7 @@ CREATE TABLE permissions (
 );
 
 -- ---------------------------------------------------------------------------
--- ROLE → PERMISSIONS  (many-to-many)
+-- ROLE â†’ PERMISSIONS  (many-to-many)
 -- ---------------------------------------------------------------------------
 
 CREATE TABLE role_permissions (
@@ -61,13 +64,13 @@ CREATE TABLE role_permissions (
 );
 
 -- ---------------------------------------------------------------------------
--- USER → ROLES  (platform-level assignment)
+-- USER â†’ ROLES  (platform-level assignment)
 -- ---------------------------------------------------------------------------
 
 CREATE TABLE user_roles (
     user_id    UUID        NOT NULL,
     role_id    UUID        NOT NULL,
-    granted_at TIMESTAMPTZ NOT NULL DEFAULT now(),
+    granted_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
     granted_by UUID,                                 -- user_id of the admin who granted it
     CONSTRAINT pk_user_roles PRIMARY KEY (user_id, role_id),
     CONSTRAINT fk_ur_user FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
@@ -87,9 +90,9 @@ CREATE TABLE enterprise_user_roles (
     enterprise_id UUID        NOT NULL,
     user_id       UUID        NOT NULL,
     role_id       UUID        NOT NULL,
-    granted_at    TIMESTAMPTZ NOT NULL DEFAULT now(),
+    granted_at    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
     granted_by    UUID,
-    expires_at    TIMESTAMPTZ,
+    expires_at    TIMESTAMP WITH TIME ZONE,
     CONSTRAINT pk_enterprise_user_roles PRIMARY KEY (id),
     CONSTRAINT uq_eur UNIQUE (enterprise_id, user_id, role_id),
     CONSTRAINT fk_eur_enterprise FOREIGN KEY (enterprise_id) REFERENCES enterprises (id) ON DELETE CASCADE,
@@ -101,7 +104,7 @@ CREATE INDEX idx_eur_enterprise ON enterprise_user_roles (enterprise_id);
 CREATE INDEX idx_eur_user       ON enterprise_user_roles (user_id);
 
 -- ---------------------------------------------------------------------------
--- SEED DATA – system roles  (is_system = TRUE, never delete)
+-- SEED DATA â€“ system roles  (is_system = TRUE, never delete)
 -- ---------------------------------------------------------------------------
 
 INSERT INTO roles (id, name, role_type, description, is_system) VALUES
@@ -115,7 +118,7 @@ INSERT INTO roles (id, name, role_type, description, is_system) VALUES
     (gen_random_uuid(), 'Service Account',   'SERVICE_ACCOUNT',   'Machine-to-machine API access',                       TRUE);
 
 -- ---------------------------------------------------------------------------
--- SEED DATA – core permissions
+-- SEED DATA â€“ core permissions
 -- ---------------------------------------------------------------------------
 
 INSERT INTO permissions (id, name, resource, action, description) VALUES

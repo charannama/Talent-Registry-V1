@@ -66,7 +66,7 @@ public class AuthController {
         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "400", description = "Invalid code or request"),
         @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "403", description = "User role not allowed")
     })
-    @PostMapping("/oauth2/exchange")
+    @PostMapping({"/oauth2/exchange", "/oauth2/login"})
     public ResponseEntity<ApiResponse<AuthResponse>> exchangeToken(
             @Valid @RequestBody OAuth2ExchangeRequest request,
             jakarta.servlet.http.HttpServletRequest httpRequest) {
@@ -74,6 +74,8 @@ public class AuthController {
         AuthResponse response = oauth2ExchangeService.exchangeToken(request, httpRequest);
         return ResponseEntity.ok(ApiResponse.success("OAuth2 Login successful", response));
     }
+
+    // (Removed GET mapping because oauth2Login is stateless and not enabled in SecurityConfig)
 
     // ------------------------------------------------------------------
     // POST /register

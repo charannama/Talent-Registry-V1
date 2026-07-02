@@ -26,6 +26,9 @@ public class ProfileResponse {
     private String portfolioUrl;
     private EligibilityLevel eligibilityLevel;
     private Instant lastSyncAt;
+    private Boolean profileVisible;
+    private Boolean suspended;
+    private String suspensionReason;
     private java.util.List<SkillResponse> skills;
     private java.util.List<ProjectResponse> projects;
     private java.util.List<WorkExperienceResponse> workExperiences;

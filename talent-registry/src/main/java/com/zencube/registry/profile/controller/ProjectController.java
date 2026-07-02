@@ -29,7 +29,7 @@ public class ProjectController {
     }
 
     @GetMapping("/user/{userId}/projects")
-    @PreAuthorize("hasAnyRole('HR','ADMIN')")
+    @PreAuthorize("hasAnyRole('HR_STAFF','ADMIN')")
     public ResponseEntity<ApiResponse<List<ProjectResponse>>> getProjectsByUserId(@PathVariable UUID userId) {
         List<ProjectResponse> projects = projectService.getProjectsByUserId(userId);
         return ResponseEntity.ok(ApiResponse.success("Projects retrieved successfully", projects));
